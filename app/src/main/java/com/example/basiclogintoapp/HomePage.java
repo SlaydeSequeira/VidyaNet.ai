@@ -18,6 +18,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,6 +30,8 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.basiclogintoapp.Fragments.ChatFragment;
 import com.example.basiclogintoapp.Fragments.Home2Fragment;
+import com.example.basiclogintoapp.Fragments.Home3Fragment;
+import com.example.basiclogintoapp.Fragments.Home4Fragment;
 import com.example.basiclogintoapp.Fragments.HomeFragment;
 import com.example.basiclogintoapp.Fragments.PaymentFragment;
 import com.example.basiclogintoapp.Fragments.ProfileFragment;
@@ -111,7 +114,7 @@ public class HomePage extends AppCompatActivity {
         ViewPager viewPager = findViewById(R.id.viewpager);
 
         MyPagerAdapter pagerAdapter = new MyPagerAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
-        pagerAdapter.addFragment(new Home2Fragment(), "Home");
+        pagerAdapter.addFragment(new Home4Fragment(), "Home");
         pagerAdapter.addFragment(new SearchFragment(), "Search");
         pagerAdapter.addFragment(new ProfileFragment(),"Profile");
         viewPager.setAdapter(pagerAdapter);
@@ -129,6 +132,7 @@ public class HomePage extends AppCompatActivity {
         r3 = headerView.findViewById(R.id.rel3);
         r4 = headerView.findViewById(R.id.rel6);
         r5 = headerView.findViewById(R.id.rel5);
+
         navigationView = findViewById(R.id.navigation_view);
         FirebaseUser fuser;
         DatabaseReference reference;
@@ -153,9 +157,30 @@ public class HomePage extends AppCompatActivity {
 
             }
 
+
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
+            }
+        });
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+        DatabaseReference databaseReference = firebaseDatabase.getReference("MyUsers").child(fuser.getUid()).child("points");
+
+// Add a ValueEventListener to fetch the data
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // Retrieve the value from the dataSnapshot
+                String pointsValue = dataSnapshot.getValue(String.class);
+
+                // Set the retrieved value to t1
+                Pts.setText(pointsValue+" points");
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Handle errors
+                Log.e("Firebase", "Error fetching data", databaseError.toException());
             }
         });
         r1.setOnClickListener(new View.OnClickListener() {
@@ -168,21 +193,21 @@ public class HomePage extends AppCompatActivity {
         r2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(HomePage.this, ReportForm.class);
+                Intent i = new Intent(HomePage.this, PieChart1.class);
                 startActivity(i);
             }
         });
         r4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(HomePage.this, TransparentTransactions.class);
+                Intent i = new Intent(HomePage.this, ConnectPpl.class);
                 startActivity(i);
             }
         });
         r3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(HomePage.this, PendingCases.class);
+                Intent i = new Intent(HomePage.this, PendingLectures.class);
                 startActivity(i);
             }
         });

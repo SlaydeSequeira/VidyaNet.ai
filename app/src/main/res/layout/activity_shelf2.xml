@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity_Shelf_2"
+    android:background="@color/white"
+    >
+
+    <RelativeLayout
+        android:id="@+id/searchLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <EditText
+            android:id="@+id/edittext"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/cir"
+            android:hint="Search"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:src="@drawable/baseline_search_24" />
+    </RelativeLayout>
+
+    <!-- Shopping Center Aisles -->
+    <RelativeLayout
+        android:id="@+id/aislesLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/searchLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="50dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <!-- Aisle A -->
+        <LinearLayout
+            android:id="@+id/aisleALayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:orientation="vertical">
+            <Button
+                android:id="@+id/A1"
+                android:layout_width="60dp"
+                android:backgroundTint="#3F51B5"
+                android:layout_height="60dp"
+                android:text="A-1"/>
+
+            <Button
+                android:id="@+id/A2"
+                android:layout_width="60dp"
+                android:backgroundTint="#3F51B5"
+                android:layout_height="60dp"
+                android:text="A-2"/>
+            <Button
+                android:id="@+id/A3"
+                android:backgroundTint="#3F51B5"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:text="A-3"/>
+
+            <Button
+                android:id="@+id/A4"
+                android:backgroundTint="#3F51B5"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:text="A-4"/>
+            <Button
+                android:id="@+id/A5"
+                android:backgroundTint="#3F51B5"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:text="A-5"/>
+
+            <Button
+                android:id="@+id/A6"
+                android:backgroundTint="#3F51B5"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:text="A-6"/>
+
+            <!-- Add more buttons for Aisle A boxes as needed -->
+
+        </LinearLayout>
+
+        <!-- Aisle A -->
+        <LinearLayout
+            android:id="@+id/aisleBLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:orientation="vertical"
+            android:layout_toRightOf="@+id/aisleALayout"
+            >
+            <Button
+                android:backgroundTint="#3F51B5"
+                android:id="@+id/B1"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:text="B-1"/>
+
+            <Button
+                android:id="@+id/B2"
+                android:backgroundTint="#3F51B5"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:text="B-2"/>
+            <Button
+                android:id="@+id/B3"
+                android:layout_width="60dp"
+                android:backgroundTint="#3F51B5"
+                android:layout_height="60dp"
+                android:text="B-3"/>
+
+            <Button
+                android:id="@+id/B4"
+                android:backgroundTint="#3F51B5"
+
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:text="B-4"/>
+            <Button
+                android:backgroundTint="#3F51B5"
+                android:id="@+id/B5"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:text="B-5"/>
+
+            <Button
+                android:id="@+id/B6"
+                android:backgroundTint="#3F51B5"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:text="B-6"/>
+
+
+            <!-- Add more buttons for Aisle A boxes as needed -->
+
+        </LinearLayout>
+        <!-- Aisle A -->
+        <LinearLayout
+            android:id="@+id/aisleCLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@+id/aisleDLayout"
+            android:orientation="vertical">
+            <Button
+                android:id="@+id/C1"
+                android:layout_width="60dp"
+                android:backgroundTint="#3F51B5"
+                android:layout_height="60dp"
+                android:text="C-1"/>
+
+            <Button
+                android:id="@+id/C2"
+                android:backgroundTint="#3F51B5"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:text="C-2"/>
+
+            <Button
+                android:id="@+id/C3"
+                android:layout_width="60dp"
+                android:backgroundTint="#3F51B5"
+                android:layout_height="60dp"
+                android:text="C-3"/>
+
+            <Button
+                android:id="@+id/C4"
+                android:layout_width="60dp"
+                android:backgroundTint="#3F51B5"
+                android:layout_height="60dp"
+                android:text="C-4"/>
+
+            <Button
+                android:id="@+id/C5"
+                android:layout_width="60dp"
+                android:backgroundTint="#3F51B5"
+                android:layout_height="60dp"
+                android:text="C-5"/>
+
+            <Button
+                android:id="@+id/C6"
+                android:layout_width="60dp"
+                android:backgroundTint="#3F51B5"
+                android:layout_height="60dp"
+                android:text="C-6"/>
+
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/aisleDLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentEnd="true"
+            android:orientation="vertical">
+            <Button
+                android:id="@+id/D1"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:backgroundTint="#3F51B5"
+                android:text="D-1"/>
+
+            <Button
+                android:id="@+id/D2"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:backgroundTint="#3F51B5"
+                android:text="D-2"/>
+
+            <Button
+                android:id="@+id/D3"
+                android:backgroundTint="#3F51B5"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:text="D-3"/>
+
+            <Button
+                android:id="@+id/D4"
+                android:backgroundTint="#3F51B5"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:text="D-4"/>
+
+            <Button
+                android:id="@+id/D5"
+                android:backgroundTint="#3F51B5"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:text="D-5"/>
+
+            <Button
+                android:id="@+id/D6"
+                android:layout_width="60dp"
+                android:backgroundTint="#3F51B5"
+                android:layout_height="60dp"
+                android:text="D-6"/>
+
+
+
+            <!-- Add more buttons for Aisle A boxes as needed -->
+
+        </LinearLayout>
+
+        <!-- Add more aisles as needed -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            >
+            <!-- Square 1 -->
+            <FrameLayout
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_gravity="center"
+                android:background="#E91E63">
+
+
+            </FrameLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:gravity="center"
+                android:layout_marginLeft="1dp"
+                android:layout_height="match_parent"
+                android:text="Full"
+                android:textColor="#000000"
+                android:textSize="14sp" />
+
+            <FrameLayout
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="30dp"
+                android:layout_gravity="center"
+                android:background="#3F51B5">
+
+
+            </FrameLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:gravity="center"
+                android:layout_marginLeft="1dp"
+                android:layout_height="match_parent"
+                android:text="Empty"
+                android:textColor="#000000"
+                android:textSize="14sp" />
+
+            <FrameLayout
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="30dp"
+                android:layout_gravity="center"
+                android:background="#4CAF50">
+
+
+            </FrameLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:gravity="center"
+                android:layout_marginLeft="1dp"
+                android:layout_height="match_parent"
+                android:text="Selected"
+                android:textColor="#000000"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/centerButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="36dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@color/white"
+            android:src="@android:drawable/ic_input_add"
+            android:tint="@android:color/white" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="140dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/aisleCLayout"
+            android:orientation="vertical"
+            android:id="@+id/a"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_centerHorizontal="true"
+>
+            <Button
+                android:id="@+id/B7"
+                android:layout_width="60dp"
+                android:backgroundTint="#3F51B5"
+                android:layout_height="60dp"
+                android:text="B-7"/>
+            <Button
+                android:id="@+id/B8"
+                android:layout_width="60dp"
+                android:backgroundTint="#3F51B5"
+                android:layout_height="60dp"
+                android:text="B-8"/>
+            <Button
+                android:id="@+id/C7"
+                android:layout_width="60dp"
+                android:backgroundTint="#3F51B5"
+                android:layout_height="60dp"
+                android:text="C-7"/>
+            <Button
+                android:id="@+id/C8"
+                android:layout_width="60dp"
+                android:backgroundTint="#3F51B5"
+                android:layout_height="60dp"
+                android:text="C-8"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_centerHorizontal="true"
+                >
+                <Button
+                    android:id="@+id/A7"
+                    android:layout_width="60dp"
+                    android:backgroundTint="#3F51B5"
+                    android:layout_height="60dp"
+                    android:text="A-7"/>
+                <Button
+                    android:id="@+id/A8"
+                    android:layout_width="60dp"
+                    android:backgroundTint="#3F51B5"
+                    android:layout_height="60dp"
+                    android:text="A-8"/>
+                <Button
+                    android:id="@+id/D7"
+                    android:layout_width="60dp"
+                    android:backgroundTint="#3F51B5"
+                    android:layout_height="60dp"
+                    android:text="D-7"/>
+                <Button
+                    android:id="@+id/D8"
+                    android:layout_width="60dp"
+                    android:backgroundTint="#3F51B5"
+                    android:layout_height="60dp"
+                    android:text="D-8"/>
+            </LinearLayout>
+
+        </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/a"
+            android:id="@+id/b"
+            android:layout_centerHorizontal="true"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            android:text="Your predicted score is"
+            />
+    </RelativeLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

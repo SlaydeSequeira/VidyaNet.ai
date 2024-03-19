@@ -106,12 +106,12 @@
                 android:layout_height="match_parent">
 
                 <TextView
+                    android:id="@+id/points"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:text="0 points"
                     android:textColor="@color/black"
-                    android:id="@+id/points"
                     android:textSize="20dp"
                     android:textStyle="bold" />
             </RelativeLayout>
@@ -148,7 +148,7 @@
                 android:layout_height="30dp"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
-                android:src="@drawable/baseline_report_problem_24" />
+                android:src="@drawable/baseline_link_24" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -156,7 +156,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="20dp"
                 android:layout_toRightOf="@+id/image"
-                android:text="Report Issue"
+                android:text="Offline Course/Connect"
                 android:textColor="@color/black"
                 android:textSize="20dp"
                 android:textStyle="bold" />
@@ -200,7 +200,7 @@
                 android:id="@+id/image1"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@drawable/baseline_work_history_24"
+                android:src="@drawable/baseline_inventory_24"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
                />
@@ -211,7 +211,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="20dp"
                 android:layout_toRightOf="@+id/image1"
-                android:text="Case History"
+                android:text="Add Courses"
                 android:textColor="@color/black"
                 android:textSize="20dp"
                 android:textStyle="bold" />
@@ -255,7 +255,7 @@
                 android:layout_height="30dp"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
-                android:src="@drawable/baseline_help_24" />
+                android:src="@drawable/baseline_pie_chart_outline_24" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -263,7 +263,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="20dp"
                 android:layout_toRightOf="@+id/image2"
-                android:text="Help and Services"
+                android:text="Dashboard"
                 android:textColor="@color/black"
                 android:textSize="20dp"
                 android:textStyle="bold" />
@@ -305,7 +305,7 @@
                 android:id="@+id/image3"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@drawable/baseline_chat_24"
+                android:src="@drawable/baseline_file_upload_24"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
                  />
@@ -316,7 +316,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="20dp"
                 android:layout_toRightOf="@+id/image3"
-                android:text="Chat"
+                android:text="Upload Reels"
                 android:textColor="@color/black"
                 android:textSize="20dp"
                 android:textStyle="bold" />

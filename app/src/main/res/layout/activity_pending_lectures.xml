@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PendingLectures"
+    android:background="@color/white">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24dp"
+        android:text="Pending Courses"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/black"
+        android:id="@+id/main"
+        />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card1"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_margin="8dp"
+        android:layout_below="@+id/main"
+        android:backgroundTint="#F4F4F4"
+        app:cardCornerRadius="8dp">
+
+        <!-- Card 1 content -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp">
+
+            <!-- Title -->
+            <TextView
+                android:id="@+id/title1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Python Course"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:layout_marginBottom="8dp"/>
+
+            <!-- Description -->
+            <TextView
+                android:id="@+id/description1"
+                android:textColor="@color/black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Entire course of Python"
+                android:textSize="14sp"
+                android:layout_below="@id/title1"
+                android:layout_marginBottom="8dp"/>
+
+            <!-- Progress Bar -->
+            <ProgressBar
+                android:id="@+id/progressBar1"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/description1"
+                android:progress="0"
+                android:layout_marginBottom="8dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/text1"
+                android:layout_toRightOf="@+id/progressBar1"
+                android:text="0%"
+
+                android:layout_below="@+id/description1"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/black"
+                />
+
+            <!-- Button -->
+            <Button
+                android:id="@+id/button1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Start"
+                android:layout_below="@id/progressBar1"/>
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card2"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_below="@id/card1"
+        android:layout_margin="8dp"
+        android:backgroundTint="#F4F4F4"
+        app:cardCornerRadius="8dp">
+
+        <!-- Card 2 content -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp">
+
+            <!-- Title -->
+            <TextView
+                android:id="@+id/title2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Java Course"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+
+                android:layout_marginBottom="8dp"/>
+
+            <!-- Description -->
+            <TextView
+                android:id="@+id/description2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Entire course of Java"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+
+                android:layout_below="@id/title2"
+                android:layout_marginBottom="8dp"/>
+
+            <!-- Progress Bar -->
+            <ProgressBar
+                android:id="@+id/progressBar2"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/description2"
+                android:progress="0"
+                android:layout_marginBottom="8dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/progressBar2"
+                android:text="0%"
+                android:id="@+id/text2"
+                android:layout_below="@+id/description2"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/black"
+                />
+
+            <!-- Button -->
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Start"
+                android:layout_below="@id/progressBar2"/>
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card3"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_below="@id/card2"
+        android:layout_margin="8dp"
+        android:backgroundTint="#F4F4F4"
+        app:cardCornerRadius="8dp">
+
+        <!-- Card 3 content -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp">
+
+            <!-- Title -->
+            <TextView
+                android:id="@+id/title3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kotlin Course"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+
+                android:textSize="18sp"
+                android:layout_marginBottom="8dp"/>
+
+            <!-- Description -->
+            <TextView
+                android:id="@+id/description3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Entire course of Kotlin"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:layout_below="@id/title3"
+                android:layout_marginBottom="8dp"/>
+
+            <!-- Progress Bar -->
+            <ProgressBar
+                android:id="@+id/progressBar3"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/description3"
+                android:progress="0"
+                android:layout_marginBottom="8dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/progressBar3"
+                android:text="0%"
+                android:id="@+id/text3"
+                android:layout_below="@+id/description3"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/black"
+                />
+            <!-- Button -->
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Start"
+                android:layout_below="@id/progressBar3"/>
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

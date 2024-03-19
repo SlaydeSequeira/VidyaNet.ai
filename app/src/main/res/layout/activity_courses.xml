@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".Courses">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:layout_height="match_parent">
+
+    <!-- Course 1 -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView1"
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:cardCornerRadius="8dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#F3F3F3"
+            android:padding="16dp">
+<ImageView
+    android:layout_width="60dp"
+    android:layout_centerVertical="true"
+    android:layout_alignParentEnd="true"
+    android:layout_height="60dp"
+    android:src="@drawable/img_4"
+    />
+            <TextView
+
+                android:id="@+id/course_title_1"
+                android:layout_width="wrap_content"
+                android:textColor="@color/black"
+                android:layout_height="wrap_content"
+                android:text="Complete Java Dev Course"
+                android:textSize="18sp"
+
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/buy_button_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/course_title_1"
+                android:text="Buy"
+                android:textColor="@color/white"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="#6546d2" />
+            <TextView
+                android:id="@+id/text1"
+                android:layout_width="wrap_content"
+                android:textColor="@color/black"
+                android:layout_marginTop="26dp"
+                android:layout_toRightOf="@+id/buy_button_1"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="Rs 999 or points"
+                android:layout_below="@+id/course_title_1"
+                android:textSize="18sp"
+                 />
+            <Button
+                android:id="@+id/redeem_button_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/buy_button_1"
+                android:text="Redeem"
+                android:textColor="@color/white"
+
+                android:layout_marginTop="8dp"
+                android:backgroundTint="#6546d2" />
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Course 2 -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cardView1"
+        android:layout_margin="16dp"
+        app:cardCornerRadius="8dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#F3F3F3"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/course_title_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="Complete Python Course"
+
+                android:textSize="18sp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/text2"
+                android:layout_width="wrap_content"
+                android:textColor="@color/black"
+                android:layout_marginTop="26dp"
+                android:layout_toRightOf="@+id/buy_button_2"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="Rs 499 or points"
+                android:layout_below="@+id/course_title_2"
+                android:textSize="18sp"
+                />
+
+            <Button
+                android:id="@+id/buy_button_2"
+                android:layout_width="wrap_content"
+                android:textColor="@color/white"
+
+                android:layout_height="wrap_content"
+
+                android:layout_below="@id/course_title_2"
+                android:text="Buy"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="#6546d2" />
+
+            <Button
+                android:id="@+id/redeem_button_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/buy_button_2"
+                android:text="Redeem"
+                android:textColor="@color/white"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="#6546d2" />
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Course 3 -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cardView2"
+        android:layout_margin="16dp"
+        app:cardCornerRadius="8dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#F3F3F3"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/course_title_3"
+                android:layout_width="wrap_content"
+                android:textColor="@color/black"
+                android:layout_height="wrap_content"
+                android:text="Learn Kotlin"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/text3"
+                android:layout_width="wrap_content"
+                android:textColor="@color/black"
+                android:layout_marginTop="26dp"
+                android:layout_toRightOf="@+id/buy_button_3"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="Rs 1499 or points"
+                android:layout_below="@+id/course_title_3"
+                android:textSize="18sp"
+                />
+            <Button
+                android:id="@+id/buy_button_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:layout_below="@id/course_title_3"
+                android:text="Buy"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="#6546d2" />
+
+            <Button
+                android:id="@+id/redeem_button_3"
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/buy_button_3"
+                android:text="Redeem"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="#6546d2" />
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Course 4 -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cardView3"
+        android:layout_margin="16dp"
+        app:cardCornerRadius="8dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#F3F3F3"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/course_title_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Web dev front End"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/buy_button_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/course_title_4"
+                android:text="Buy"
+                android:layout_marginTop="16dp"
+                android:textColor="@color/white"
+                android:backgroundTint="#6546d2" />
+            <TextView
+                android:id="@+id/text4"
+                android:layout_width="wrap_content"
+                android:textColor="@color/black"
+                android:layout_marginTop="26dp"
+                android:layout_toRightOf="@+id/buy_button_4"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="Rs 699 or points"
+                android:layout_below="@+id/course_title_4"
+                android:textSize="18sp"
+                />
+            <Button
+                android:id="@+id/redeem_button_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:layout_below="@id/buy_button_4"
+                android:text="Redeem"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="#6546d2" />
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Course 5 -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cardView4"
+        android:layout_margin="16dp"
+        app:cardCornerRadius="8dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:background="#F3F3F3"
+
+            >
+            <TextView
+                android:id="@+id/text5"
+                android:layout_width="wrap_content"
+                android:textColor="@color/black"
+                android:layout_marginTop="26dp"
+                android:layout_toRightOf="@+id/buy_button_5"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="Rs 799 or points"
+                android:layout_below="@+id/course_title_5"
+                android:textSize="18sp"
+                />
+            <TextView
+                android:id="@+id/course_title_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Backend Development Course"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/buy_button_5"
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/course_title_5"
+                android:text="Buy"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="#6546d2" />
+
+            <Button
+                android:id="@+id/redeem_button_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/buy_button_5"
+                android:text="Redeem"
+                android:textColor="@color/white"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="#6546d2" />
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+    </RelativeLayout>
+</ScrollView>

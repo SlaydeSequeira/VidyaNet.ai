@@ -2,25 +2,113 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
     <!-- AndroidManifest.xml -->
-    <uses-feature
-        android:name="android.hardware.camera"
-        android:required="false" />
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32"
+        tools:ignore="ScopedStorage" />
+
+    <meta-data
+        android:name="com.google.mlkit.vision.DEPENDENCIES"
+        android:value="face" />
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
 
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@drawable/logo"
-        android:label="Anti Corruption"
+        android:icon="@drawable/vidyanet"
+        android:label="VidyaNet.Ai"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:supportsRtl="true"
         android:theme="@style/Theme.BasicLoginToApp"
         tools:targetApi="31">
+        <activity
+            android:name=".UpdateReel"
+            android:exported="false" />
+        <activity
+            android:name=".Courses"
+            android:exported="false" />
+        <activity
+            android:name=".PendingLectures"
+            android:exported="false" />
+        <activity
+            android:name=".Map"
+            android:exported="false" />
+        <activity
+            android:name=".OfflineClass"
+            android:exported="false" />
+        <activity
+            android:name=".MicroStudy"
+            android:exported="false" />
+        <activity
+            android:name=".ConnectPpl"
+            android:exported="false" />
+        <activity
+            android:name=".FacialRecog"
+            android:exported="false" />
+        <activity
+            android:name=".TruckMap"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity3"
+            android:exported="false" />
+        <activity
+            android:name=".Pie"
+            android:exported="false" />
+        <activity
+            android:name=".PieChart3"
+            android:exported="false" />
+        <activity
+            android:name=".PieChart1"
+            android:exported="false" />
+        <activity
+            android:name=".IncDec"
+            android:exported="false" />
+        <activity
+            android:name=".Craftable"
+            android:exported="false" />
+        <activity
+            android:name=".VillagerTrade"
+            android:exported="false" />
+        <activity
+            android:name=".Craft"
+            android:exported="false" />
+        <activity
+            android:name=".UpdateItems"
+            android:exported="false" />
+        <activity
+            android:name=".NewItemPrediction"
+            android:exported="false" />
+        <activity
+            android:name=".AisleSelector"
+            android:exported="false" />
+        <activity
+            android:name=".Shelf3"
+            android:exported="false" />
+        <activity
+            android:name=".Activity_Shelf_2"
+            android:exported="false" />
+        <activity
+            android:name=".AddInventory"
+            android:exported="false" />
+        <activity
+            android:name=".ShopInfo"
+            android:exported="false" />
+        <activity
+            android:name=".ShelfAssistant"
+            android:exported="false" />
         <activity
             android:name=".CaseDetailActivity"
             android:exported="false" />

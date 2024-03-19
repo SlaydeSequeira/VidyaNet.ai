@@ -24,19 +24,34 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.basiclogintoapp.Activity_Shelf_2;
+import com.example.basiclogintoapp.AddInventory;
+import com.example.basiclogintoapp.AisleSelector;
 import com.example.basiclogintoapp.CaseManagementSystem;
+import com.example.basiclogintoapp.Courses;
+import com.example.basiclogintoapp.Craft;
+import com.example.basiclogintoapp.FacialRecog;
 import com.example.basiclogintoapp.MainActivity;
 import com.example.basiclogintoapp.MainActivity2;
+import com.example.basiclogintoapp.MainActivity3;
 import com.example.basiclogintoapp.MessageActivity;
 import com.example.basiclogintoapp.Model.OrderItem;
 import com.example.basiclogintoapp.Model.Users;
+import com.example.basiclogintoapp.NewItemPrediction;
+import com.example.basiclogintoapp.OfflineClass;
 import com.example.basiclogintoapp.OrderPage;
 import com.example.basiclogintoapp.Payment;
 import com.example.basiclogintoapp.PendingCases;
+import com.example.basiclogintoapp.PendingLectures;
+import com.example.basiclogintoapp.PieChart1;
 import com.example.basiclogintoapp.R;
 import com.example.basiclogintoapp.ReportForm;
 import com.example.basiclogintoapp.SendAlert;
+import com.example.basiclogintoapp.Shelf3;
+import com.example.basiclogintoapp.ShelfAssistant;
 import com.example.basiclogintoapp.Travel;
+import com.example.basiclogintoapp.UpdateItems;
+import com.example.basiclogintoapp.UpdateReel;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -61,6 +76,7 @@ public class ProfileFragment extends Fragment {
     ImageView imageView;
 
     DatabaseReference reference;
+    TextView t1;
     FirebaseUser fuser;
 
     RecyclerView recyclerView;
@@ -91,24 +107,51 @@ public class ProfileFragment extends Fragment {
         r3=view.findViewById(R.id.rel3);
         r4= view.findViewById(R.id.rel4);
         r5= view.findViewById(R.id.rel5);
+// Assuming t1 is a TextView
+        TextView t1 = view.findViewById(R.id.points);
+
+        fuser = FirebaseAuth.getInstance().getCurrentUser();
+        reference = FirebaseDatabase.getInstance().getReference("MyUsers")
+                .child(fuser.getUid());
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+        DatabaseReference databaseReference = firebaseDatabase.getReference("MyUsers").child(fuser.getUid()).child("points");
+
+// Add a ValueEventListener to fetch the data
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // Retrieve the value from the dataSnapshot
+                String pointsValue = dataSnapshot.getValue(String.class);
+
+                // Set the retrieved value to t1
+                t1.setText(pointsValue+" points");
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Handle errors
+                Log.e("Firebase", "Error fetching data", databaseError.toException());
+            }
+        });
+
         r1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               Intent i = new Intent(getActivity(), ReportForm.class);
+               Intent i = new Intent(getActivity(), MainActivity3.class);
                startActivity(i);
             }
         });
         r2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getActivity(), PendingCases.class);
+                Intent i = new Intent(getActivity(), Courses.class);
                 startActivity(i);
             }
         });
         r3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getActivity(), CaseManagementSystem.class);
+                Intent i = new Intent(getActivity(), PieChart1.class);
                 startActivity(i);
                 Log.d(TAG, "onClick: " );
             }
@@ -116,8 +159,7 @@ public class ProfileFragment extends Fragment {
         r5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getActivity(), MessageActivity.class);
-                i.putExtra("userid", "vrszPY65eDYgOMgVFkhMrc2Xkvu1");
+                Intent i = new Intent(getActivity(), UpdateReel.class);
                 startActivity(i);
             }
         });
@@ -139,9 +181,6 @@ public class ProfileFragment extends Fragment {
 
 
 
-        fuser = FirebaseAuth.getInstance().getCurrentUser();
-        reference = FirebaseDatabase.getInstance().getReference("MyUsers")
-                .child(fuser.getUid());
 
 
 
@@ -289,8 +328,6 @@ public class ProfileFragment extends Fragment {
 
         }
     }
-    public void openWebsite() {
-        String url = "https://dcruzjanice.github.io/BitNBuild/"; Intent i = new Intent (Intent.ACTION_VIEW); i.setData (Uri.parse (url)); startActivity (i);
-    }
+
 
 }

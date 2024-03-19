@@ -148,6 +148,7 @@ public class HomeFragment extends Fragment {
                 recyclerView1.setNestedScrollingEnabled(false);
                 RecyclerAdapter1 adapter1 = new RecyclerAdapter1(getContext(), data4,count1,data5,data6,Image2,x,data7);
                 recyclerView1.setAdapter(adapter1);
+
             }
 
             @Override

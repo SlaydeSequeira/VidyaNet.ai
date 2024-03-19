@@ -9,19 +9,26 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -33,9 +40,13 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
@@ -44,6 +55,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.nio.channels.SelectionKey;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,243 +68,423 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
 
-public class MainActivity2 extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener, LocationListener {
-    private GoogleMap googleMap;
-    private LocationManager locationManager;
-    Location location1;
-    private FloatingActionButton centerButton;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
 
-    private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
-    private FusedLocationProviderClient fusedLocationClient;
-    private LocationCallback locationCallback;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.maps.DirectionsApi;
+import com.google.maps.DirectionsApiRequest;
+import com.google.maps.GeoApiContext;
+import com.google.maps.android.PolyUtil;
+import com.google.maps.model.DirectionsLeg;
+import com.google.maps.model.DirectionsResult;
+import com.google.maps.model.DirectionsRoute;
+
+public class MainActivity2 extends FragmentActivity implements OnMapReadyCallback {
+
+    private GoogleMap mMap;
+    private Marker marker1, marker2, marker3;
+    private Marker selectedMarker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-
-        // Initialize locationCallback to receive location updates
-        locationCallback = new LocationCallback() {
-            @Override
-            public void onLocationResult(LocationResult locationResult) {
-                super.onLocationResult(locationResult);
-                if (locationResult != null) {
-                    location1 = locationResult.getLastLocation();
-                    if (location1 != null) {
-                        // Display coordinates in a Toast message
-                        String message = "Latitude: " + location1.getLatitude() + "\nLongitude: " + location1.getLongitude();
-                        //  Toast.makeText(MainActivity2.this, message, Toast.LENGTH_SHORT).show();
-                    }
-                }
-            }
-        };
-
-        // Check and request location permissions
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                    LOCATION_PERMISSION_REQUEST_CODE);
-        } else {
-            // Start receiving location updates
-            startLocationUpdates();
-        }
-
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.mapFragment);
         mapFragment.getMapAsync(this);
-        FusedLocationProviderClient fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-        centerMapToUserLocation();
-        centerButton = findViewById(R.id.centerButton);
-        centerButton.setOnClickListener(new View.OnClickListener() {
+
+        // Set click listeners for the card views
+    }
+
+    @Override
+    public void onMapReady(@NonNull GoogleMap googleMap) {
+        mMap = googleMap;
+        LatLng me = new LatLng(19.044444, 72.820596); // Replace with actual coordinates
+        marker1 = mMap.addMarker(new MarkerOptions().position(me).title("Your Location").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(me));
+        // Set a default zoom level
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(me, 15));
+
+        findViewById(R.id.card1).setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("PotentialBehaviorOverride")
             @Override
             public void onClick(View view) {
-                centerMapToUserLocation();
+                //Toast.makeText(MainActivity2.this, "Electronics Clicked", Toast.LENGTH_SHORT).show();
+                // Add markers for shop locations
+                mMap.clear();
+                LatLng me = new LatLng(19.044444, 72.820596); // Replace with actual coordinates
+                marker1 = mMap.addMarker(new MarkerOptions().position(me).title("Your Location").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+
+                LatLng shop1 = new LatLng(19.0765, 72.8777); // Replace with actual coordinates
+                LatLng shop2 = new LatLng(19.0621, 72.8311); // Replace with actual coordinates
+                LatLng shop3 = new LatLng(19.1096, 72.8273); // Replace with actual coordinates
+                marker1 = mMap.addMarker(new MarkerOptions().position(shop1).title("Tool Shop1"));
+                marker2 = mMap.addMarker(new MarkerOptions().position(shop2).title("Tool Shop2"));
+                marker3 = mMap.addMarker(new MarkerOptions().position(shop3).title("Tool Shop3"));
+                mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+                    @Override
+                    public boolean onMarkerClick(Marker marker) {
+                        selectedMarker = marker;
+                        showSelectButton();
+                        return true;
+                    }
+                });
+                // Draw lines from each electronics shop to "me"
+                PolylineOptions polylineOptions1 = new PolylineOptions()
+                        .add(shop1, me)
+                        .color(Color.BLUE);
+
+                PolylineOptions polylineOptions2 = new PolylineOptions()
+                        .add(shop2, me)
+                        .color(Color.GREEN);
+
+                PolylineOptions polylineOptions3 = new PolylineOptions()
+                        .add(shop3, me)
+                        .color(Color.RED);
+
+                mMap.addPolyline(polylineOptions1);
+                mMap.addPolyline(polylineOptions2);
+                mMap.addPolyline(polylineOptions3);
+
+                // Calculate distances and display them on the map
+                double distance1 = calculateDistance(shop1, me);
+                double distance2 = calculateDistance(shop2, me);
+                double distance3 = calculateDistance(shop3, me);
+
+                BitmapDescriptor customIcon = BitmapDescriptorFactory.fromResource(R.drawable.baseline_circle_24); // Replace with your actual image resource
+                String distanceText1 = String.format("Distance to Shop 1: %.2f km", distance1 * 120);
+                mMap.addMarker(new MarkerOptions()
+                        .position(midPoint(shop1, me))
+                        .title(distanceText1)
+                        .icon(BitmapFromVector(
+                                getApplicationContext(),
+                                R.drawable.baseline_circle_24)));
+
+                String distanceText2 = String.format("Distance to Shop 2: %.2f km", distance2 * 120);
+                mMap.addMarker(new MarkerOptions()
+                        .position(midPoint(shop2, me))
+                        .title(distanceText2)
+                        .icon(BitmapFromVector(
+                                getApplicationContext(),
+                                R.drawable.baseline_circle_24)));
+
+                String distanceText3 = String.format("Distance to Shop 3: %.2f km", distance3 * 120);
+                mMap.addMarker(new MarkerOptions()
+                        .position(midPoint(shop3, me))
+                        .title(distanceText3)
+                        .icon(BitmapFromVector(
+                                getApplicationContext(),
+                                R.drawable.baseline_circle_24)));
+
+                // Focus the camera on the midpoint of the lines
+                LatLngBounds.Builder builder = new LatLngBounds.Builder();
+                builder.include(shop1);
+                builder.include(shop2);
+                builder.include(shop3);
+                builder.include(me);
+
+                LatLngBounds bounds = builder.build();
+                mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 100));
             }
         });
 
-        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 
-        // Request location updates
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
-                ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 10000, 10, this); // Update every 10 seconds or 10 meters change
-        }
-    }
+        findViewById(R.id.card2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Toast.makeText(MainActivity2.this, "Groceries Clicked", Toast.LENGTH_SHORT).show();
+                mMap.clear();
+                LatLng me = new LatLng(19.044444, 72.820596); // Replace with actual coordinates
+                marker1 = mMap.addMarker(new MarkerOptions().position(me).title("Your Location").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
 
-    @Override
-    public void onMapReady(GoogleMap googleMap) {
-        this.googleMap = googleMap;
+                // Implement any action you want when Groceries card is clicked
+                LatLng groceryShop1 = new LatLng(19.0350, 72.8405); // Replace with actual coordinates
+                LatLng groceryShop2 = new LatLng(19.0553, 72.8258); // Replace with actual coordinates
+                LatLng groceryShop3 = new LatLng(19.1232, 72.8310); // Replace with actual coordinates
 
-        List<Place> places = new ArrayList<>();
-        places.add(new Place("Marked location", 19.194976, 72.835818));
+                marker1 = mMap.addMarker(new MarkerOptions().position(groceryShop1).title("Seed Shop 1"));
+                marker2 = mMap.addMarker(new MarkerOptions().position(groceryShop2).title("Seed Shop 2"));
+                marker3 = mMap.addMarker(new MarkerOptions().position(groceryShop3).title("Seed Shop 3"));
+                selectedMarker = marker1;
+                showSelectButton();
+                // Draw lines from each grocery shop to "me"
+                PolylineOptions polylineOptions1 = new PolylineOptions()
+                        .add(groceryShop1, me)
+                        .color(Color.BLUE);
 
-        for (Place place : places) {
-            LatLng placeLatLng = new LatLng(place.getLatitude(), place.getLongitude());
-            googleMap.addMarker(new MarkerOptions()
-                    .position(placeLatLng)
-                    .title(place.getName()));
-        }
-    }
+                PolylineOptions polylineOptions2 = new PolylineOptions()
+                        .add(groceryShop2, me)
+                        .color(Color.GREEN);
 
-    @Override
-    public boolean onMarkerClick(Marker marker) {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
-                ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            Toast.makeText(this, "Location permission not granted", Toast.LENGTH_SHORT).show();
-            return true;
-        }
+                PolylineOptions polylineOptions3 = new PolylineOptions()
+                        .add(groceryShop3, me)
+                        .color(Color.RED);
 
-        LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-        boolean isGPSEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
-        if (!isGPSEnabled) {
-            Toast.makeText(this, "Please enable GPS", Toast.LENGTH_SHORT).show();
-            return true;
-        }
+                mMap.addPolyline(polylineOptions1);
+                mMap.addPolyline(polylineOptions2);
+                mMap.addPolyline(polylineOptions3);
 
-        try {
-            Location lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-            if (lastKnownLocation != null) {
-                LatLng destinationLatLng = marker.getPosition();
-                LatLng originLatLng = new LatLng(lastKnownLocation.getLatitude(), lastKnownLocation.getLongitude());
-                String directionsUrl = getDirectionsUrl(originLatLng, destinationLatLng);
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(directionsUrl));
-                startActivity(intent);
-            } else {
-                Toast.makeText(this, "Unable to retrieve current location", Toast.LENGTH_SHORT).show();
+                // Calculate distances and display them on the map
+                double distance1 = calculateDistance(groceryShop1, me);
+                double distance2 = calculateDistance(groceryShop2, me);
+                double distance3 = calculateDistance(groceryShop3, me);
+
+                BitmapDescriptor customIcon = BitmapDescriptorFactory.fromResource(R.drawable.baseline_circle_24); // Replace with your actual image resource
+                String distanceText1 = String.format("Distance to Shop 1: %.2f km", distance1 * 120);
+                mMap.addMarker(new MarkerOptions()
+                        .position(midPoint(groceryShop1, me))
+                        .title(distanceText1)
+                        .icon(BitmapFromVector(
+                                getApplicationContext(),
+                                R.drawable.baseline_circle_24)));
+
+                String distanceText2 = String.format("Distance to Shop 2: %.2f km", distance2 * 120);
+                mMap.addMarker(new MarkerOptions()
+                        .position(midPoint(groceryShop2, me))
+                        .title(distanceText2)
+                        .icon(BitmapFromVector(
+                                getApplicationContext(),
+                                R.drawable.baseline_circle_24)));
+
+                String distanceText3 = String.format("Distance to Shop 3: %.2f km", distance3 * 120);
+                mMap.addMarker(new MarkerOptions()
+                        .position(midPoint(groceryShop3, me))
+                        .title(distanceText3)
+                        .icon(BitmapFromVector(
+                                getApplicationContext(),
+                                R.drawable.baseline_circle_24)));
+
+                // Focus the camera on the midpoint of the lines
+                LatLngBounds.Builder builder = new LatLngBounds.Builder();
+                builder.include(groceryShop1);
+                builder.include(groceryShop2);
+                builder.include(groceryShop3);
+                builder.include(me);
+
+                LatLngBounds bounds = builder.build();
+                mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 100));
             }
-        } catch (SecurityException e) {
-            // Handle the exception, for example, display a message to the user.
-            Toast.makeText(this, "Unable to retrieve current location due to GPS permission issue", Toast.LENGTH_SHORT).show();
-        }
-        return true;
+        });
+
+
+        findViewById(R.id.card3).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MainActivity2.this, "Clothing Clicked", Toast.LENGTH_SHORT).show();
+                mMap.clear();
+                // Inside your onClick method
+                LatLng me = new LatLng(19.044444, 72.820596); // Replace with actual coordinates
+                marker1 = mMap.addMarker(new MarkerOptions().position(me).title("Your Location").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+
+                LatLng clothesShop1 = new LatLng(19.0467, 72.8631);
+                LatLng clothesShop2 = new LatLng(19.0200, 72.8585);
+                LatLng clothesShop3 = new LatLng(19.1350, 72.8442);
+                marker1 = mMap.addMarker(new MarkerOptions().position(clothesShop1).title("Food Shop 1"));
+                marker2 = mMap.addMarker(new MarkerOptions().position(clothesShop2).title("Food Shop 2"));
+                marker3 = mMap.addMarker(new MarkerOptions().position(clothesShop3).title("Food Shop 3"));
+                selectedMarker = marker1;
+                showSelectButton();
+// Draw lines from each clothes shop to "me"
+                PolylineOptions polylineOptions1 = new PolylineOptions()
+                        .add(clothesShop1, me)
+                        .color(Color.BLUE);
+
+                PolylineOptions polylineOptions2 = new PolylineOptions()
+                        .add(clothesShop2, me)
+                        .color(Color.GREEN);
+
+                PolylineOptions polylineOptions3 = new PolylineOptions()
+                        .add(clothesShop3, me)
+                        .color(Color.RED);
+
+                mMap.addPolyline(polylineOptions1);
+                mMap.addPolyline(polylineOptions2);
+                mMap.addPolyline(polylineOptions3);
+
+// Calculate distances and display them on the map
+                double distance1 = calculateDistance(clothesShop1, me);
+                double distance2 = calculateDistance(clothesShop2, me);
+                double distance3 = calculateDistance(clothesShop3, me);
+
+                BitmapDescriptor customIcon = BitmapDescriptorFactory.fromResource(R.drawable.baseline_circle_24); // Replace with your actual image resource
+                String distanceText1 = String.format("Distance to Shop 1: %.2f km", distance1 * 120);
+                mMap.addMarker(new MarkerOptions()
+                        .position(midPoint(clothesShop1, me))
+                        .title(distanceText1)
+                        // below line is use to add
+                        // custom marker on our map.
+                        .icon(BitmapFromVector(
+                                getApplicationContext(),
+                                R.drawable.baseline_circle_24)));
+                String distanceText2 = String.format("Distance to Shop 2: %.2f km", distance2 * 120);
+                mMap.addMarker(new MarkerOptions()
+                        .position(midPoint(clothesShop2, me))
+                        .title(distanceText2)
+                        // below line is use to add
+                        // custom marker on our map.
+                        .icon(BitmapFromVector(
+                                getApplicationContext(),
+                                R.drawable.baseline_circle_24)));
+                String distanceText3 = String.format("Distance to Shop 3: %.2f km", distance3 * 120);
+                mMap.addMarker(new MarkerOptions()
+                        .position(midPoint(clothesShop3, me))
+                        .title(distanceText3)
+                        // below line is use to add
+                        // custom marker on our map.
+                        .icon(BitmapFromVector(
+                                getApplicationContext(),
+                                R.drawable.baseline_circle_24)));
+
+// Focus the camera on the midpoint of the lines
+                LatLngBounds.Builder builder = new LatLngBounds.Builder();
+                builder.include(clothesShop1);
+                builder.include(clothesShop2);
+                builder.include(clothesShop3);
+                builder.include(me);
+
+                LatLngBounds bounds = builder.build();
+                mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 100));
+
+            }
+        });
     }
 
-
-    private String getDirectionsUrl(LatLng origin, LatLng destination) {
-        String strOrigin = "origin=" + origin.latitude + "," + origin.longitude;
-        String strDestination = "destination=" + destination.latitude + "," + destination.longitude;
-        String sensor = "sensor=false";
-        String parameters = strOrigin + "&" + strDestination + "&" + sensor;
-        String output = "json";
-        return "https://maps.googleapis.com/maps/api/directions/" + output + "?" + parameters;
+    private void drawRoute(LatLng origin, LatLng destination) {
+        // Use Google Directions API to get route information
+        new GetDirectionsTask().execute(origin, destination);
     }
 
-    private class Place {
-        private String name;
-        private double latitude;
-        private double longitude;
+    private class GetDirectionsTask extends AsyncTask<LatLng, Void, List<LatLng>> {
+        @Override
+        protected List<LatLng> doInBackground(LatLng... params) {
+            LatLng origin = params[0];
+            LatLng destination = params[1];
 
-        public Place(String name, double latitude, double longitude) {
-            this.name = name;
-            this.latitude = latitude;
-            this.longitude = longitude;
-        }
+            try {
+                // Make a request to Google Directions API
+                DirectionsApiRequest request = DirectionsApi.getDirections(
+                        new GeoApiContext.Builder()
+                                .apiKey("AIzaSyD3q0XgGvb9T-xvHaq6U-xVr3WGoWWdqbE")
+                                .build(),
+                        origin.latitude + "," + origin.longitude,
+                        destination.latitude + "," + destination.longitude
+                );
+                DirectionsResult result = request.await();
 
-        public String getName() {
-            return name;
-        }
+                // Parse the result and get polyline points
+                if (result.routes != null && result.routes.length > 0) {
+                    DirectionsRoute route = result.routes[0];
+                    List<LatLng> polylinePoints = new ArrayList<>();
 
-        public double getLatitude() {
-            return latitude;
-        }
-
-        public double getLongitude() {
-            return longitude;
-        }
-    }
-
-    @Override
-    public void onLocationChanged(Location location) {
-        if (googleMap != null) {
-            LatLng currentLatLng = new LatLng(location.getLatitude(), location.getLongitude());
-            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 15));
-
-            // Save the last known location
-            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putFloat("lastLatitude", (float) location.getLatitude());
-            editor.putFloat("lastLongitude", (float) location.getLongitude());
-            editor.apply();
-
-            // Remove location updates after receiving a valid location
-            locationManager.removeUpdates(this);
-        }
-    }
-
-    private void centerMapToUserLocation() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
-                ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            FusedLocationProviderClient fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-            if (location1 == null) {
-
-                fusedLocationClient.getLastLocation().addOnSuccessListener(this, new OnSuccessListener<Location>() {
-                    @Override
-                    public void onSuccess(Location location) {
-                        if (location != null) {
-                            LatLng currentLatLng = new LatLng(location.getLatitude(), location.getLongitude());
-                            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 15));
-                        } else {
-                            LatLng defaultLatLng = new LatLng(location1.getLatitude(), location1.getLongitude());
-                            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(defaultLatLng, 15));
+                    for (DirectionsLeg leg : route.legs) {
+                        for (com.google.maps.model.LatLng point : leg.steps[0].polyline.decodePath()) {
+                            polylinePoints.add(new LatLng(point.lat, point.lng));
                         }
                     }
-                });
-            } else {
-                LatLng defaultLatLng = new LatLng(location1.getLatitude(), location1.getLongitude());
-                googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(defaultLatLng, 15));
-            }
-        } else {
-            LatLng defaultLatLng = new LatLng(18.943044, 72.828842);
-            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(defaultLatLng, 15));
-        }
-    }
 
-    private void startLocationUpdates() {
-        LocationRequest locationRequest = LocationRequest.create()
-                .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
-                .setInterval(10000) // Update interval in milliseconds
-                .setFastestInterval(5000); // Fastest update interval in milliseconds
-
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            return;
-        }
-        fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, null);
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == LOCATION_PERMISSION_REQUEST_CODE) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                // Permission granted, start receiving location updates
-                startLocationUpdates();
-                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                    // TODO: Consider calling
-                    //    ActivityCompat#requestPermissions
-                    // here to request the missing permissions, and then overriding
-                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                    //                                          int[] grantResults)
-                    // to handle the case where the user grants the permission. See the documentation
-                    // for ActivityCompat#requestPermissions for more details.
-                    return;
+                    return polylinePoints;
                 }
-                googleMap.setMyLocationEnabled(true);
-                googleMap.setOnMarkerClickListener(this);
-            } else {
-                // Permission denied, handle accordingly
-                Toast.makeText(this, "Location permission denied.", Toast.LENGTH_SHORT).show();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(List<LatLng> polylinePoints) {
+            // Draw polyline on the map
+            if (polylinePoints != null) {
+                mMap.addPolyline(new PolylineOptions().addAll(polylinePoints).color(Color.BLUE));
             }
         }
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        // Stop location updates when the activity is destroyed
-        fusedLocationClient.removeLocationUpdates(locationCallback);
+    private double calculateDistance(LatLng point1, LatLng point2) {
+        double x1 = point1.latitude;
+        double y1 = point1.longitude;
+        double x2 = point2.latitude;
+        double y2 = point2.longitude;
+
+        // Using the distance formula
+        return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
     }
 
+    private LatLng midPoint(LatLng point1, LatLng point2) {
+        double lat1 = point1.latitude;
+        double lon1 = point1.longitude;
+        double lat2 = point2.latitude;
+        double lon2 = point2.longitude;
+
+        double midLat = (lat1 + lat2) / 2;
+        double midLon = (lon1 + lon2) / 2;
+
+        return new LatLng(midLat, midLon);
+    }
+
+    private BitmapDescriptor
+    BitmapFromVector(Context context, int vectorResId) {
+        // below line is use to generate a drawable.
+        Drawable vectorDrawable = ContextCompat.getDrawable(
+                context, vectorResId);
+
+        // below line is use to set bounds to our vector
+        // drawable.
+        vectorDrawable.setBounds(
+                0, 0, vectorDrawable.getIntrinsicWidth(),
+                vectorDrawable.getIntrinsicHeight());
+
+        // below line is use to create a bitmap for our
+        // drawable which we have added.
+        Bitmap bitmap = Bitmap.createBitmap(
+                vectorDrawable.getIntrinsicWidth(),
+                vectorDrawable.getIntrinsicHeight(),
+                Bitmap.Config.ARGB_8888);
+
+        // below line is use to add bitmap in our canvas.
+        Canvas canvas = new Canvas(bitmap);
+
+        // below line is use to draw our
+        // vector drawable in canvas.
+        vectorDrawable.draw(canvas);
+
+        // after generating our bitmap we are returning our
+        // bitmap.
+        return BitmapDescriptorFactory.fromBitmap(bitmap);
+    }
+
+    private void showSelectButton() {
+        // Here you can show a button in your UI or perform any other action
+        // For example, you can show a button and handle its click to navigate to a new page
+        CardView selectButton = findViewById(R.id.button); // Replace with your actual button
+        selectButton.setVisibility(View.VISIBLE);
+        selectButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Handle the button click, navigate to a new page, and pass marker information
+                if (selectedMarker != null) {
+                    String markerTitle = selectedMarker.getTitle();
+                    LatLng markerPosition = selectedMarker.getPosition();
+
+                    // Pass marker information to a new page
+                    Intent intent = new Intent(MainActivity2.this, ShopInfo.class);
+                    intent.putExtra("markerTitle", markerTitle);
+                    intent.putExtra("markerLat", markerPosition.latitude);
+                    intent.putExtra("markerLng", markerPosition.longitude);
+                    // Add more data as needed
+                    startActivity(intent);
+                }
+            }
+        });
+    }
 }

@@ -99,6 +99,7 @@ public class MessageActivity extends AppCompatActivity {
                 if (!isAdmin) { // Only set username and image if not an admin
                     username.setText(user.getUsername());
 
+
                     if (user.getImageURL().equals("default")) {
                         imageView.setImageResource(R.mipmap.ic_launcher);
                     } else {

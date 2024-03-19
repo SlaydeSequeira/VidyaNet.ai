@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="120dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/reward"
+    android:padding="16dp">
+<androidx.cardview.widget.CardView
+    android:layout_width="80dp"
+    android:layout_height="80dp"
+    android:id="@+id/card"
+    android:layout_centerVertical="true"
+    app:cardCornerRadius="300dp"
+    >
+    <ImageView
+        android:id="@+id/profilePic"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:scaleType="centerCrop"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="16dp"/>
+</androidx.cardview.widget.CardView>
+    <TextView
+        android:id="@+id/username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Username"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:textSize="23sp"
+        android:layout_marginLeft="10dp"
+        android:layout_toEndOf="@id/card"
+        android:layout_alignParentTop="true"/>
+
+    <TextView
+        android:id="@+id/points"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Points: 100"
+        android:layout_marginLeft="10dp"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:layout_below="@id/username"
+        android:layout_toEndOf="@id/card"/>
+    <TextView
+        android:id="@+id/score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:layout_marginLeft="10dp"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:layout_below="@id/points"
+        android:layout_toEndOf="@id/card"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#6546d2"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:text="HIRE"
+        />
+
+</RelativeLayout>
+
