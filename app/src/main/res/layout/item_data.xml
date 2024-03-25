@@ -60,7 +60,7 @@
         android:backgroundTint="#6546d2"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:text="HIRE"
+        android:text="Message"
         />
 
 </RelativeLayout>

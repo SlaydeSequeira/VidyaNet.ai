@@ -27,6 +27,7 @@ import java.util.Objects;
 public class PendingLectures extends AppCompatActivity {
 ProgressBar progressBar1,progressBar2,progressBar3;
 TextView t1,t2,t3;
+int a1,a2,a3;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,21 +59,38 @@ TextView t1,t2,t3;
             @SuppressLint("SetTextI18n")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String a =String.valueOf(snapshot.child("1").getValue());
-                String b =String.valueOf(snapshot.child("2").getValue());
-                String c =String.valueOf(snapshot.child("3").getValue());
-                if ("1".equals(a)) {
-                    progressBar1.setProgress(100);
-                    t1.setText("100");
-                }
-                if ("1".equals(b)) {
-                    progressBar2.setProgress(100);
-                    t2.setText("100");
-                }
-                if ("1".equals(c)) {
-                    progressBar3.setProgress(100);
-                    t3.setText("100");
-                }
+                String a =String.valueOf(snapshot.child("1").child("0").getValue());
+                a1= (int) (25*Integer.parseInt(a));
+                String b =String.valueOf(snapshot.child("1").child("1").getValue());
+                a1= (int) (a1+25*Integer.parseInt(b));
+                String c =String.valueOf(snapshot.child("1").child("2").getValue());
+                a1= (int) (a1+25*Integer.parseInt(c));
+                String d =String.valueOf(snapshot.child("1").child("3").getValue());
+                a1= (int) (a1+25*Integer.parseInt(d));
+                    progressBar1.setProgress(a1);
+                    t1.setText(String.valueOf(a1)+"%");
+
+                String e =String.valueOf(snapshot.child("2").child("0").getValue());
+                a2= (int) (25*Integer.parseInt(e));
+                String f =String.valueOf(snapshot.child("2").child("1").getValue());
+                a2= (int) (a2+25*Integer.parseInt(f));
+                String g =String.valueOf(snapshot.child("2").child("2").getValue());
+                a2= (int) (a2+25*Integer.parseInt(g));
+                String h =String.valueOf(snapshot.child("2").child("3").getValue());
+                a2= (int) (a2+25*Integer.parseInt(h));
+                    progressBar2.setProgress(a2);
+                    t2.setText(String.valueOf(a2)+"%");
+
+                String i =String.valueOf(snapshot.child("3").child("0").getValue());
+                a3= (int) (25*Integer.parseInt(i));
+                String j =String.valueOf(snapshot.child("3").child("1").getValue());
+                a3= (int) (a3+25*Integer.parseInt(j));
+                String k =String.valueOf(snapshot.child("3").child("2").getValue());
+                a3= (int) (a3+25*Integer.parseInt(k));
+                String l =String.valueOf(snapshot.child("3").child("3").getValue());
+                a3= (int) (a3+25*Integer.parseInt(l));
+                progressBar3.setProgress(a3);
+                t3.setText(String.valueOf(a3)+"%");
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
@@ -107,6 +125,7 @@ TextView t1,t2,t3;
                 startMicroStudyActivity(3);
             }
         });
+
     }
 
     // Method to start MicroStudy activity with cardNumber extra

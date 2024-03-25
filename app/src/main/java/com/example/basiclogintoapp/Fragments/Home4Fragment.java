@@ -1,5 +1,11 @@
 package com.example.basiclogintoapp.Fragments;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -8,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.basiclogintoapp.HomePage;
 import com.example.basiclogintoapp.R;
 import com.example.basiclogintoapp.adapter.DataAdapter;
 
@@ -77,18 +84,33 @@ public class Home4Fragment extends Fragment {
                         count++;
                     }
                 }
-                // Create an adapter for the dataset and set it to RecyclerView
-                String[] uids = new String[count];
 
-                String[] usernames = new String[count];
-                String[] imageURLs = new String[count];
-                String[] points = new String[count];
-                System.arraycopy(data1, 0, uids, 0, count);
-                System.arraycopy(data2, 0, usernames, 0, count);
-                System.arraycopy(data3, 0, imageURLs, 0, count);
-                System.arraycopy(data4, 0, points, 0, count);
-                recyclerView.setAdapter(new DataAdapter(getActivity(),usernames, imageURLs, points,uids));
+                // Find the index with the highest points
+                int highestPointsIndex = 0;
+                int highestPoints = Integer.MIN_VALUE;
+                for (int i = 0; i < count; i++) {
+                    int currentPoints = Integer.parseInt(data4[i]);
+                    if (currentPoints > highestPoints) {
+                        highestPoints = currentPoints;
+                        highestPointsIndex = i;
+                    }
+                }
+
+                // Get the username with the highest points
+                String highestPointsUsername = data2[highestPointsIndex];
+                String highestPointsString = data4[highestPointsIndex];
+
+                // Show notification with the highest points and corresponding username
+                showNotification(highestPointsUsername, highestPointsString);
+
+                // Create an adapter for the dataset and set it to RecyclerView
+                String[] uids = Arrays.copyOf(data1, count);
+                String[] usernames = Arrays.copyOf(data2, count);
+                String[] imageURLs = Arrays.copyOf(data3, count);
+                String[] points = Arrays.copyOf(data4, count);
+                recyclerView.setAdapter(new DataAdapter(getActivity(), usernames, imageURLs, points, uids));
             }
+
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -106,5 +128,41 @@ public class Home4Fragment extends Fragment {
         Arrays.fill(data3, null);
         Arrays.fill(data4, null);
         count = 0;
+    }
+    private void showNotification(String username,String points) {
+        // Create a notification channel
+        String channelId = "channel_id";
+        CharSequence channelName = "Channel Name";
+        int importance = NotificationManager.IMPORTANCE_DEFAULT;
+
+        NotificationChannel channel = new NotificationChannel(channelId, channelName, importance);
+
+        NotificationManager notificationManager = (NotificationManager) getContext().getSystemService(Context.NOTIFICATION_SERVICE);
+        if (notificationManager != null) {
+            notificationManager.createNotificationChannel(channel);
+        }
+
+        // Create an intent to open the app when the notification is clicked
+        Intent intent = new Intent(getContext(), HomePage.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(
+                getContext(),
+                0,
+                intent,
+                PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT
+        );
+
+        // Create the notification
+        Notification notification = new Notification.Builder(getContext(), channelId)
+                .setContentTitle("Leaderboard Stats")
+                .setContentText(username +" is at the top of the leaderboard with "+points+" points")
+                .setSmallIcon(R.drawable.logo)
+                .setContentIntent(pendingIntent)
+                .setAutoCancel(true)
+                .build();
+
+        // Show the notification
+        if (notificationManager != null) {
+            notificationManager.notify(0, notification);
+        }
     }
 }
