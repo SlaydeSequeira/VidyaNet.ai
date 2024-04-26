@@ -16,9 +16,25 @@
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
         android:id="@+id/text"
+        android:textStyle="bold"
         android:textColor="@color/black"
         android:textSize="10sp"
-        android:text="Suggestions to Improve Resume**\n\n**1. Quantify Accomplishments:**\n* Use numbers and metrics to highlight the impact of your work. For example, instead of Designed and implemented APIs,\ say \Designed and implemented 10+ RESTful APIs that improved application performance by 20%.\\n\n**2. Specify Industry Knowledge:**\n* Mention relevant industry-specific knowledge or experience. This could include specific software applications, tools, or methodologies you're familiar with.\n\n**3. Tailor to Job Description:**\n* Review the job description and identify keywords that match your skills and experience. Incorporate these keywords into your resume to demonstrate your relevance to the position.\n\n**4. Highlight Hard and Soft Skills:**\n* Include a separate section for soft skills such as communication, teamwork, and problem-solving. These skills are often highly valued by employers.\n\n**5. Use Action Verbs:**\n* Use strong action verbs throughout your resume to convey your accomplishments. \"
+        android:text="Suggestions to Improve Resume\n\n1. Quantify Accomplishments:\n Use numbers and metrics to highlight the impact of your work. For example, instead of Designed and implemented APIs,\ say \Designed and implemented 10+ RESTful APIs that improved application performance by 20%.\\n\n2. Specify Industry Knowledge:\n Mention relevant industry-specific knowledge or experience. This could include specific software applications, tools, or methodologies you're familiar with.\n\n3. Tailor to Job Description:\n Review the job description and identify keywords that match your skills and experience. Incorporate these keywords into your resume to demonstrate your relevance to the position.\n\n4. Highlight Hard and Soft Skills:\n Include a separate section for soft skills such as communication, teamwork, and problem-solving. These skills are often highly valued by employers.\n\n5. Use Action Verbs:\n Use strong action verbs throughout your resume to convey your accomplishments. "
         />
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:layout_marginTop="-200dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="100dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:id="@+id/text1"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:text="Resume Score 8.6"
+        android:layout_below="@+id/text"
+        />
 </RelativeLayout>

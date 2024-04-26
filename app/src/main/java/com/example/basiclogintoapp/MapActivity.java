@@ -12,6 +12,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.AsyncTask;
@@ -60,6 +61,8 @@ import com.google.android.gms.maps.model.PolylineOptions;
 
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
+
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -112,10 +115,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
-        LatLng pointA = new LatLng(19.965056, 73.67057);  // Start location
-        mMap.addMarker(new MarkerOptions().position(pointA).title("Start"));
-
+        LatLng pointA = new LatLng(19.966306, 73.67050);  // Start location
+        mMap.addMarker(new MarkerOptions().position(pointA).title("Your Location").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(pointA, 10));
     }
 
@@ -130,7 +131,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
         for (LatLng location : pythonLocations) {
             mMap.addMarker(new MarkerOptions().position(location).title("Python Location"));
-            mMap.addPolyline(new PolylineOptions().add(location, start).width(4).color(Color.GREEN));
+            mMap.addPolyline(new PolylineOptions().add(location, start).width(4).color(Color.BLUE));
         }
     }
 
@@ -145,7 +146,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
         for (LatLng location : javaLocations) {
             mMap.addMarker(new MarkerOptions().position(location).title("Java Location"));
-            mMap.addPolyline(new PolylineOptions().add(location, start).width(4).color(Color.RED));
+            mMap.addPolyline(new PolylineOptions().add(location, start).width(4).color(Color.BLUE));
         }
     }
 
@@ -162,5 +163,14 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             mMap.addMarker(new MarkerOptions().position(location).title("C Location"));
             mMap.addPolyline(new PolylineOptions().add(location, start).width(4).color(Color.BLUE));
         }
+    }
+    private void openFragment(String data) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+        // Create an instance of the fragment and pass the data as a bundle
+        marker_data fragment = marker_data.newInstance(data);
+
+        transaction.replace(R.id.fragment_container, fragment);
+        transaction.commit();
     }
 }

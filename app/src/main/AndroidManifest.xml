@@ -34,6 +34,12 @@
         android:theme="@style/Theme.BasicLoginToApp"
         tools:targetApi="31">
         <activity
+            android:name=".ItemDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".JobListing"
+            android:exported="false" />
+        <activity
             android:name=".NodeChecker"
             android:exported="false" />
         <activity

@@ -160,12 +160,12 @@
         <ImageView
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:src="@drawable/baseline_pending_actions_24"
+            android:src="@drawable/baseline_home_work_24"
             />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Evaluate Resume"
+            android:text="Job Search"
             android:layout_marginLeft="10dp"
             android:textColor="@color/black"
             android:textSize="14dp"

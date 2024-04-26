@@ -53,11 +53,14 @@
                 android:id="@+id/text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="5dp"
                 android:layout_toRightOf="@+id/card"
                 android:text="Procuct Name"
                 android:textColor="@color/black"
-                android:textSize="25dp"
+                android:textSize="17dp"
                 android:textStyle="bold" />
 
             <TextView
@@ -66,11 +69,11 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/text"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_toRightOf="@+id/card"
                 android:text="Brand Name"
                 android:textColor="@color/black"
-                android:textSize="20dp" />
+                android:textSize="12dp" />
             <TextView
                 android:id="@+id/text3"
                 android:layout_width="wrap_content"
@@ -81,7 +84,7 @@
                 android:layout_toRightOf="@+id/card"
                 android:text="ID"
                 android:textColor="@color/black"
-                android:textSize="20dp" />
+                android:textSize="10dp" />
 
         </RelativeLayout>
     </androidx.cardview.widget.CardView>

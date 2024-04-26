@@ -10,26 +10,40 @@ import okhttp3.*;
 
 import java.io.IOException;
 
+import android.os.Bundle;
+import android.util.Log;
+import androidx.appcompat.app.AppCompatActivity;
+
+import okhttp3.*;
+
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+
 public class NodeChecker extends AppCompatActivity {
-
+    OkHttpClient client;
     private static final String TAG = "NodeChecker";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_node_checker);
 
-        // Create OkHttpClient instance
-        OkHttpClient client = new OkHttpClient();
+        // Initialize OkHttpClient
+        client = new OkHttpClient.Builder()
+                .connectTimeout(30, TimeUnit.SECONDS)
+                .readTimeout(30, TimeUnit.SECONDS)
+                .writeTimeout(30, TimeUnit.SECONDS)
+                .build();
 
-        // Build the request body
+        sendPostRequest();
+    }
+
+    private void sendPostRequest() {
+        // Build the request body with JSON data
         String jsonBody = "{\"resume\": \"Your resume content here\"}"; // Replace with your resume content
-
         RequestBody body = RequestBody.create(jsonBody, MediaType.parse("application/json"));
 
-        // Build the request
         Request request = new Request.Builder()
-                .url("http://192.168.84.113:3000/get-suggestions")
+                .url("https://6daa-117-244-125-146.ngrok-free.app/get-suggestions") // Update with your Ngrok forwarding address
                 .post(body)
                 .build();
 
@@ -37,20 +51,18 @@ public class NodeChecker extends AppCompatActivity {
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                e.printStackTrace();
+                Log.e(TAG, "Request failed", e);
             }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 if (response.isSuccessful()) {
-                    // Get response body as string
                     String responseBody = response.body().string();
                     Log.d(TAG, "Response: " + responseBody);
 
-                    // You can process the response here
+                    // Process the response (consider using a JSON parser like Gson)
                 } else {
-                    // Handle unsuccessful response
-                    Log.e(TAG, "Unsuccessful response: " + response);
+                    Log.e(TAG, "Unsuccessful response: " + response.code());
                 }
             }
         });

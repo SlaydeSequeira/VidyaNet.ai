@@ -86,6 +86,7 @@ dependencies {
     implementation 'com.google.mlkit:face-detection:16.1.6'
 
     implementation ("androidx.cardview:cardview:1.0.0")
+    implementation 'com.airbnb.android:lottie:6.0.0'
 
 // Chart and graph library
     implementation ("com.github.blackfizz:eazegraph:1.2.5l@aar")
