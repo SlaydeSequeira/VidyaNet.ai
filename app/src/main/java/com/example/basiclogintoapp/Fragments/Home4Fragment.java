@@ -101,7 +101,7 @@ public class Home4Fragment extends Fragment {
                 String highestPointsString = data4[highestPointsIndex];
 
                 // Show notification with the highest points and corresponding username
-                showNotification(highestPointsUsername, highestPointsString);
+                //showNotification(highestPointsUsername, highestPointsString);
 
                 // Create an adapter for the dataset and set it to RecyclerView
                 String[] uids = Arrays.copyOf(data1, count);

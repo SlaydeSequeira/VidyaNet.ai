@@ -109,7 +109,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.DataViewHolder
 
         public void bindData(String username, String points, String imageUrl, String uid) {
             textView.setText(username);
-            pts.setText("Points: " + points);
+            pts.setText("Resume Score: " + points);
             this.uid = uid;
 
             // Load image into ImageView using Glide

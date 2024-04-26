@@ -207,7 +207,7 @@ public class HomePage extends AppCompatActivity {
         r3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(HomePage.this, PendingLectures.class);
+                Intent i = new Intent(HomePage.this, NodeChecker.class);
                 startActivity(i);
             }
         });

@@ -30,7 +30,6 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
     private List<Chat> mChat;
     private String imgURL;
     private TextToSpeech textToSpeech;
-
     // Firebase
     FirebaseUser fuser;
 

@@ -78,6 +78,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-messaging:23.0.0'
     // retrofit 2
     implementation 'com.squareup.retrofit2:retrofit:2.5.0'
+    implementation 'com.itextpdf:itextpdf:5.5.13.3' // iText 5.5.x (LGPL/MPL license)
+
     implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
 
     implementation 'com.google.android.gms:play-services-mlkit-face-detection:17.1.0'

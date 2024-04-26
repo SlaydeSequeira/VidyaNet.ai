@@ -165,7 +165,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Pending Courses"
+            android:text="Evaluate Resume"
             android:layout_marginLeft="10dp"
             android:textColor="@color/black"
             android:textSize="14dp"
@@ -191,7 +191,7 @@
         <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ToDo List Update"
+        android:text="Upload Activity"
         android:layout_marginLeft="10dp"
         android:textColor="@color/black"
         android:textSize="14dp"

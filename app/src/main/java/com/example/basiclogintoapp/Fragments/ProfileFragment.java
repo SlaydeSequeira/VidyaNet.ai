@@ -3,8 +3,13 @@ package com.example.basiclogintoapp.Fragments;
 import static android.app.Activity.RESULT_OK;
 import static android.service.controls.ControlsProviderService.TAG;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -31,9 +36,11 @@ import com.example.basiclogintoapp.CaseManagementSystem;
 import com.example.basiclogintoapp.Courses;
 import com.example.basiclogintoapp.Craft;
 import com.example.basiclogintoapp.FacialRecog;
+import com.example.basiclogintoapp.HomePage;
 import com.example.basiclogintoapp.MainActivity;
 import com.example.basiclogintoapp.MainActivity2;
 import com.example.basiclogintoapp.MainActivity3;
+import com.example.basiclogintoapp.MapActivity;
 import com.example.basiclogintoapp.MessageActivity;
 import com.example.basiclogintoapp.Model.OrderItem;
 import com.example.basiclogintoapp.Model.Users;
@@ -46,6 +53,7 @@ import com.example.basiclogintoapp.PendingLectures;
 import com.example.basiclogintoapp.PieChart1;
 import com.example.basiclogintoapp.R;
 import com.example.basiclogintoapp.ReportForm;
+import com.example.basiclogintoapp.ResumeScanner;
 import com.example.basiclogintoapp.SendAlert;
 import com.example.basiclogintoapp.Shelf3;
 import com.example.basiclogintoapp.ShelfAssistant;
@@ -69,6 +77,7 @@ import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 public class ProfileFragment extends Fragment {
 
@@ -92,7 +101,7 @@ public class ProfileFragment extends Fragment {
     String[] data6= new String[100];
     int count1=0;
     String[] Image2= new String[100];
-
+    DatabaseReference dr;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -111,6 +120,35 @@ public class ProfileFragment extends Fragment {
         TextView t1 = view.findViewById(R.id.points);
 
         fuser = FirebaseAuth.getInstance().getCurrentUser();
+        dr = FirebaseDatabase.getInstance().getReference("jobOffer");
+        dr.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // Loop through all children in the "jobOffer" reference
+                for (DataSnapshot child : dataSnapshot.getChildren()) {
+                   // Toast.makeText(getActivity(), fuser.getUid(), Toast.LENGTH_SHORT).show();
+
+                    // Check if the key matches the current user's UID
+                    if (fuser != null && Objects.equals(child.getKey(), fuser.getUid())) {
+                        // Get the value associated with this key
+                        String value = child.getValue(String.class);
+                        // Display a Toast message with the value
+                        //Toast.makeText(getActivity(),  value, Toast.LENGTH_SHORT).show();
+                        showNotification(value,value);
+                        // Optionally, you could break out of the loop if you only expect one match
+                        break;
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Handle the error appropriately
+               // Toast.makeText(JobOfferActivity.this, "Error: " + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
         reference = FirebaseDatabase.getInstance().getReference("MyUsers")
                 .child(fuser.getUid());
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
@@ -124,7 +162,7 @@ public class ProfileFragment extends Fragment {
                 String pointsValue = dataSnapshot.getValue(String.class);
 
                 // Set the retrieved value to t1
-                t1.setText(pointsValue+" points");
+                t1.setText("Resume Score "+pointsValue);
             }
 
             @Override
@@ -137,14 +175,14 @@ public class ProfileFragment extends Fragment {
         r1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               Intent i = new Intent(getActivity(), MainActivity3.class);
+               Intent i = new Intent(getActivity(), MapActivity.class);
                startActivity(i);
             }
         });
         r2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getActivity(), Courses.class);
+                Intent i = new Intent(getActivity(), ResumeScanner.class);
                 startActivity(i);
             }
         });
@@ -328,6 +366,41 @@ public class ProfileFragment extends Fragment {
 
         }
     }
+    private void showNotification(String username,String points) {
+        // Create a notification channel
+        String channelId = "channel_id";
+        CharSequence channelName = "Channel Name";
+        int importance = NotificationManager.IMPORTANCE_DEFAULT;
 
+        NotificationChannel channel = new NotificationChannel(channelId, channelName, importance);
+
+        NotificationManager notificationManager = (NotificationManager) getContext().getSystemService(Context.NOTIFICATION_SERVICE);
+        if (notificationManager != null) {
+            notificationManager.createNotificationChannel(channel);
+        }
+
+        // Create an intent to open the app when the notification is clicked
+        Intent intent = new Intent(getContext(), HomePage.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(
+                getContext(),
+                0,
+                intent,
+                PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT
+        );
+
+        // Create the notification
+        Notification notification = new Notification.Builder(getContext(), channelId)
+                .setContentTitle("Congratulations On Interview Selection")
+                .setContentText(username)
+                .setSmallIcon(R.drawable.logo)
+                .setContentIntent(pendingIntent)
+                .setAutoCancel(true)
+                .build();
+
+        // Show the notification
+        if (notificationManager != null) {
+            notificationManager.notify(0, notification);
+        }
+    }
 
 }
