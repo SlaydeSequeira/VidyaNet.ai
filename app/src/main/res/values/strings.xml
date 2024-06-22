@@ -5,4 +5,20 @@
     <string name="nav_close">Close</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+        <!-- Other strings -->
+
+    <string-array name="salary_ranges">
+        <item>100,000-150,000</item>
+        <item>150,000-200,000</item>
+        <item>200,000-250,000</item>
+        <item>250,000-300,000</item>
+        <item>300,000-350,000</item>
+        <item>350,000-400,000</item>
+    </string-array>
+    <string-array name="jobs">
+        <item>Service</item>
+        <item>Sales</item>
+
+    </string-array>
+
 </resources>

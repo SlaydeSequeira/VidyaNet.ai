@@ -1,5 +1,7 @@
 package com.example.basiclogintoapp;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
@@ -48,6 +50,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -72,6 +75,20 @@ public class HomePage extends AppCompatActivity {
         if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP){
             getWindow().setStatusBarColor(Color.parseColor("#F6F6F6"));
         }
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(task -> {
+                    if (!task.isSuccessful()) {
+                        Log.w(TAG, "Fetching FCM registration token failed", task.getException());
+                        return;
+                    }
+
+                    // Get the new FCM token
+                    String token = task.getResult();
+                    Log.d(TAG, "FCM registration token /n/n/n/n/n/n/n/n/n/n/n/n/n/n/n/n/n: " + token);
+                   // Toast.makeText(this, token, Toast.LENGTH_SHORT).show();
+                    // You can send the token to your server or use it as needed
+                });
+
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         myRef = FirebaseDatabase.getInstance().getReference("MyUsers").child(firebaseUser.getUid());
 

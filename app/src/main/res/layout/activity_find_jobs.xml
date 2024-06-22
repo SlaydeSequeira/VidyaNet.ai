@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".FindJobs">
+
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:layout_marginBottom="20dp"
+        android:padding="40dp"><TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:id="@+id/t"
+        android:text="Select Salary Range and type of occupation"
+        />
+
+        <Spinner
+            android:id="@+id/salary_spinner"
+            android:layout_width="150dp"
+            android:layout_below="@+id/t"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:entries="@array/salary_ranges"
+            android:padding="16dp"
+            android:background="@android:drawable/btn_dropdown"/>
+
+        <Spinner
+            android:id="@+id/job_spinner"
+            android:layout_width="150dp"
+            android:layout_below="@+id/t"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/salary_spinner"
+            android:entries="@array/jobs"
+            android:layout_marginLeft="20dp"
+            android:padding="16dp"
+            android:background="@android:drawable/btn_dropdown"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/hiddenrel"
+            android:visibility="gone"
+            >
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:cardCornerRadius="30dp"
+                android:backgroundTint="@color/white"
+                >
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="20dp"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="20dp"
+                        android:textColor="@color/black"
+                        android:id="@+id/textview1"
+                        android:textStyle="bold"
+                        />
+                    <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16dp"
+                    android:id="@+id/textview2"
+                        android:textColor="@color/black"
+                        android:layout_below="@+id/textview1"
+                    />
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+        </RelativeLayout>
+    </RelativeLayout>
+</FrameLayout>
+

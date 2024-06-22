@@ -36,12 +36,15 @@ import com.example.basiclogintoapp.CaseManagementSystem;
 import com.example.basiclogintoapp.Courses;
 import com.example.basiclogintoapp.Craft;
 import com.example.basiclogintoapp.FacialRecog;
+import com.example.basiclogintoapp.FindJobs;
+import com.example.basiclogintoapp.GetImageInfo;
 import com.example.basiclogintoapp.HomePage;
 import com.example.basiclogintoapp.MainActivity;
 import com.example.basiclogintoapp.MainActivity2;
 import com.example.basiclogintoapp.MainActivity3;
 import com.example.basiclogintoapp.MapActivity;
 import com.example.basiclogintoapp.MessageActivity;
+import com.example.basiclogintoapp.MicroStudy;
 import com.example.basiclogintoapp.Model.OrderItem;
 import com.example.basiclogintoapp.Model.Users;
 import com.example.basiclogintoapp.NewItemPrediction;
@@ -175,21 +178,21 @@ public class ProfileFragment extends Fragment {
         r1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               Intent i = new Intent(getActivity(), MapActivity.class);
+               Intent i = new Intent(getActivity(), FindJobs.class);
                startActivity(i);
             }
         });
         r2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getActivity(), ResumeScanner.class);
+                Intent i = new Intent(getActivity(), PendingLectures.class);
                 startActivity(i);
             }
         });
         r3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getActivity(), PieChart1.class);
+                Intent i = new Intent(getActivity(), GetImageInfo.class);
                 startActivity(i);
                 Log.d(TAG, "onClick: " );
             }
@@ -366,8 +369,8 @@ public class ProfileFragment extends Fragment {
 
         }
     }
-    private void showNotification(String username,String points) {
-        // Create a notification channel
+    public void showNotification(String username, String points) {
+        // Create a notification channel (required for Android Oreo and later)
         String channelId = "channel_id";
         CharSequence channelName = "Channel Name";
         int importance = NotificationManager.IMPORTANCE_DEFAULT;
@@ -379,8 +382,10 @@ public class ProfileFragment extends Fragment {
             notificationManager.createNotificationChannel(channel);
         }
 
-        // Create an intent to open the app when the notification is clicked
-        Intent intent = new Intent(getContext(), HomePage.class);
+        // Create an intent to open a web URL when the notification is clicked
+        String quizUrl = "http://54.90.176.128:8081/index.html";
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(quizUrl));
+
         PendingIntent pendingIntent = PendingIntent.getActivity(
                 getContext(),
                 0,
@@ -394,7 +399,7 @@ public class ProfileFragment extends Fragment {
                 .setContentText(username)
                 .setSmallIcon(R.drawable.logo)
                 .setContentIntent(pendingIntent)
-                .setAutoCancel(true)
+                .setAutoCancel(true) // Notification will be removed when clicked
                 .build();
 
         // Show the notification
@@ -402,5 +407,4 @@ public class ProfileFragment extends Fragment {
             notificationManager.notify(0, notification);
         }
     }
-
 }

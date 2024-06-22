@@ -200,7 +200,7 @@
                 android:id="@+id/image1"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@drawable/baseline_file_present_24"
+                android:src="@drawable/baseline_menu_book_24"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
                />
@@ -211,7 +211,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="20dp"
                 android:layout_toRightOf="@+id/image1"
-                android:text="Evaluate Resume"
+                android:text="Study Session"
                 android:textColor="@color/black"
                 android:textSize="20dp"
                 android:textStyle="bold" />
@@ -255,7 +255,7 @@
                 android:layout_height="30dp"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
-                android:src="@drawable/baseline_pie_chart_outline_24" />
+                android:src="@drawable/baseline_camera_alt_24" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -263,7 +263,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="20dp"
                 android:layout_toRightOf="@+id/image2"
-                android:text="Dashboard"
+                android:text="Click and Learn"
                 android:textColor="@color/black"
                 android:textSize="20dp"
                 android:textStyle="bold" />

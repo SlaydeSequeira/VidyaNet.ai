@@ -112,36 +112,7 @@ public class ConnectPpl extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Get the extracted text from the EditText
-                String extractedText = t1.getText().toString();
 
-                // Split the text into an array of strings
-                String[] textArray = extractedText.split("\n");
-                FirebaseUser fuser = FirebaseAuth.getInstance().getCurrentUser();
-
-                // Get reference to your Firebase database
-                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("MyUsers").child(fuser.getUid()).child("toDo");
-
-                // Push each string separately to the database
-                for (String text : textArray) {
-                    String key = databaseReference.push().getKey(); // Generate a unique key
-                    databaseReference.child(key).setValue(text); // Set the value of the key to the text string
-                }
-
-                // Optionally, you can add a listener to know when the data is successfully written
-                databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        // Data successfully written to the database
-                        Log.d("Firebase", "Data successfully written to the database");
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-                        // Data writing operation cancelled
-                        Log.d("Firebase", "Data writing cancelled: " + error.getMessage());
-                    }
-                });
             }
         });
 

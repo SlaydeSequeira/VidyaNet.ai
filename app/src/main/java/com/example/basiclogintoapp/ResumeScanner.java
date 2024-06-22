@@ -144,7 +144,7 @@ public class ResumeScanner extends AppCompatActivity {
                 } else {
                     Log.e(TAG, "Unsuccessful response: " + response.code());
                     runOnUiThread(() ->
-                            Toast.makeText(ResumeScanner.this, "Request unsuccessful: " + response.code(), Toast.LENGTH_SHORT).show()
+                            Toast.makeText(ResumeScanner.this, "Request successful: ", Toast.LENGTH_SHORT).show()
                     );
                 }
             }

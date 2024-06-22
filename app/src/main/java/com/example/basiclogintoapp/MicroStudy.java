@@ -55,6 +55,7 @@ public class MicroStudy extends AppCompatActivity {
         setContentView(R.layout.activity_micro_study);
         WebView webView = findViewById(R.id.webview);
         int cb1 = 0,cb2=0,cb3=0,cb4 = 0;
+        Intent i = getIntent();
         CheckBox checkbox1 = findViewById(R.id.checkbox1);
         CheckBox checkbox2 = findViewById(R.id.checkbox2);
         CheckBox checkbox3 = findViewById(R.id.checkbox3);
@@ -84,20 +85,19 @@ public class MicroStudy extends AppCompatActivity {
         }
         if(cardNumber==2)
         {
-            t1.setText("Introduction to Java");
-            t2.setText("Java Primer: Getting Started");
-            t3.setText("Data Structures in Java");
-            t4.setText("Advanced Java");
-            video="<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/UmnCZ7-9yDY?si=vFue0Vf3zb-3-JVj\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>";
+            t1.setText("Introduction to Finance");
+            t2.setText("HR: Getting Started");
+            t3.setText("Marketing");
+            t4.setText("Advanced Operations");
+            video="<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/_iU9CKWvxo4?si=1y6p5o3RKJPT9MsT\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>";
         }
         if(cardNumber==3)
         {
-            t1.setText("Introduction to Kotlin");
-            t2.setText("Kotlin Primer: Getting Started");
-            t3.setText("Data Structures in Kotlin");
-            t4.setText("Advanced Kotlin");
-
-            video="<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/EExSSotojVI?si=bY7Pq0qBlj8j0ZCn\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>";
+            t1.setText("Introduction to UPSC");
+            t2.setText("UPSC Primer: Getting Started");
+            t3.setText("How to clear");
+            t4.setText("Exam prep");
+            video="<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/G5STfWKbF0E?si=UdltKmmmpgqFTpVy\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>";
         }
         webView.loadData(video,"text/html","utf-8");
 

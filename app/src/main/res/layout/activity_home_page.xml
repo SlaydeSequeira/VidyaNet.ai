@@ -118,9 +118,7 @@
                 </com.google.android.material.tabs.TabLayout>
 
             </RelativeLayout>
-
         </androidx.cardview.widget.CardView>
-
         <!-- ViewPager -->
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/viewpager"
@@ -142,12 +140,10 @@
             app:cardCornerRadius="200px"
             android:backgroundTint="@color/white"
             >
-
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/white">
-
                 <ImageView
                     android:id="@+id/open"
                     android:layout_width="40dp"
@@ -155,11 +151,8 @@
                     android:layout_centerInParent="true"
                     android:src="@drawable/baseline_menu_24" />
             </RelativeLayout>
-
         </androidx.cardview.widget.CardView>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-
     <!-- Navigation View -->
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigation_view"
@@ -168,5 +161,4 @@
         android:layout_gravity="start"
         app:headerLayout="@layout/navigation_header"
         />
-
 </androidx.drawerlayout.widget.DrawerLayout>

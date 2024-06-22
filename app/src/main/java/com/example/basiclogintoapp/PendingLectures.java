@@ -10,6 +10,7 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,13 +41,16 @@ int a1,a2,a3;
         CardView card1 = findViewById(R.id.card1);
         CardView card2 = findViewById(R.id.card2);
         CardView card3 = findViewById(R.id.card3);
+        Button button1=findViewById(R.id.button1);
+        Button button2=findViewById(R.id.button2);
+        Button button3=findViewById(R.id.button3);
         progressBar1 = findViewById(R.id.progressBar1);
         progressBar2 = findViewById(R.id.progressBar2);
         progressBar3 = findViewById(R.id.progressBar3);
         t1 = findViewById(R.id.text1);
         t2 = findViewById(R.id.text2);
         t3 = findViewById(R.id.text3);
-
+        CardView c4 = findViewById(R.id.c4);
 
         // Set initial progress values (0%)
         progressBar1.setProgress(0);
@@ -123,6 +127,38 @@ int a1,a2,a3;
             public void onClick(View v) {
                 // Start MicroStudy activity and pass extra "cardNumber" with value 3
                 startMicroStudyActivity(3);
+            }
+        });
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start MicroStudy activity and pass extra "cardNumber" with value 1
+                startMicroStudyActivity(1);
+            }
+        });
+
+        // Set OnClickListener for card2
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start MicroStudy activity and pass extra "cardNumber" with value 2
+                startMicroStudyActivity(2);
+            }
+        });
+
+        // Set OnClickListener for card3
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start MicroStudy activity and pass extra "cardNumber" with value 3
+                startMicroStudyActivity(3);
+            }
+        });
+        c4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(PendingLectures.this,Courses.class);
+                startActivity(i);
             }
         });
 
