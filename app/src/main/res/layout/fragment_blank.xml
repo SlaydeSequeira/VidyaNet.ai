@@ -22,6 +22,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 app:cardCornerRadius="8dp"
+                android:backgroundTint="#ECECEC"
                 app:cardElevation="4dp">
 
                 <LinearLayout
@@ -45,7 +46,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Dr. Sarah Johnson"
+                            android:text="liza22"
+                            android:textColor="@color/black"
                             android:textSize="18sp"
                             android:textStyle="bold" />
 
@@ -53,7 +55,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Cardiologist"
-                            android:textColor="#666666" />
+                            android:textColor="@color/black"
+                            />
 
                         <Button
                             android:id="@+id/btnMeet1"
@@ -71,6 +74,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 app:cardCornerRadius="8dp"
+                android:backgroundTint="#ECECEC"
                 app:cardElevation="4dp">
 
                 <LinearLayout
@@ -94,7 +98,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Dr. Michael Chen"
+                            android:text="slayde"
+                            android:textColor="@color/black"
                             android:textSize="18sp"
                             android:textStyle="bold" />
 
@@ -102,7 +107,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Neurologist"
-                            android:textColor="#666666" />
+                            android:textColor="@color/black"
+                            />
 
                         <Button
                             android:id="@+id/btnMeet2"
@@ -120,6 +126,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 app:cardCornerRadius="8dp"
+                android:backgroundTint="#ECECEC"
+
                 app:cardElevation="4dp">
 
                 <LinearLayout
@@ -143,15 +151,17 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Dr. Emily Rodriguez"
+                            android:text="liza"
                             android:textSize="18sp"
+                            android:textColor="@color/black"
                             android:textStyle="bold" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Pediatrician"
-                            android:textColor="#666666" />
+                            android:textColor="@color/black"
+                         />
 
                         <Button
                             android:id="@+id/btnMeet3"
@@ -169,6 +179,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 app:cardCornerRadius="8dp"
+                android:backgroundTint="#ECECEC"
                 app:cardElevation="4dp">
 
                 <LinearLayout
@@ -192,15 +203,17 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Dr. James Wilson"
+                            android:text="chhand123"
                             android:textSize="18sp"
+                            android:textColor="@color/black"
                             android:textStyle="bold" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Dermatologist"
-                            android:textColor="#666666" />
+                            android:textColor="@color/black"
+                            />
 
                         <Button
                             android:id="@+id/btnMeet4"

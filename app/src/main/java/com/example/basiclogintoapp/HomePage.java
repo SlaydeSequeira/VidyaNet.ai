@@ -218,7 +218,7 @@ public class HomePage extends AppCompatActivity {
         r4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(HomePage.this, Payment.class);
+                Intent i = new Intent(HomePage.this, Upload.class);
                 startActivity(i);
             }
         });

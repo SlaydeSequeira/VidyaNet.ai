@@ -31,10 +31,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.basiclogintoapp.Activity_Shelf_2;
 import com.example.basiclogintoapp.AddInventory;
+import com.example.basiclogintoapp.AddMedicine;
 import com.example.basiclogintoapp.AisleSelector;
 import com.example.basiclogintoapp.CaseManagementSystem;
 import com.example.basiclogintoapp.Courses;
 import com.example.basiclogintoapp.Craft;
+import com.example.basiclogintoapp.Create_Appointment;
 import com.example.basiclogintoapp.FacialRecog;
 import com.example.basiclogintoapp.FindJobs;
 import com.example.basiclogintoapp.GetImageInfo;
@@ -63,6 +65,8 @@ import com.example.basiclogintoapp.ShelfAssistant;
 import com.example.basiclogintoapp.Travel;
 import com.example.basiclogintoapp.UpdateItems;
 import com.example.basiclogintoapp.UpdateReel;
+import com.example.basiclogintoapp.Upload;
+import com.example.basiclogintoapp.ViewMedicine;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -165,7 +169,7 @@ public class ProfileFragment extends Fragment {
                 String pointsValue = dataSnapshot.getValue(String.class);
 
                 // Set the retrieved value to t1
-                t1.setText("Resume Score "+pointsValue);
+                t1.setText("Patient Age "+pointsValue);
             }
 
             @Override
@@ -178,14 +182,14 @@ public class ProfileFragment extends Fragment {
         r1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               Intent i = new Intent(getActivity(), FindJobs.class);
+               Intent i = new Intent(getActivity(), AddMedicine.class);
                startActivity(i);
             }
         });
         r2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getActivity(), PendingLectures.class);
+                Intent i = new Intent(getActivity(), ViewMedicine.class);
                 startActivity(i);
             }
         });
@@ -200,7 +204,7 @@ public class ProfileFragment extends Fragment {
         r5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getActivity(), UpdateReel.class);
+                Intent i = new Intent(getActivity(), Create_Appointment.class);
                 startActivity(i);
             }
         });

@@ -159,7 +159,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="20dp"
                 android:layout_toRightOf="@+id/image"
-                android:text="Search Jobs by Location"
+                android:text="Add Medicine"
                 android:textColor="@color/black"
                 android:textSize="20dp"
                 android:textStyle="bold" />
@@ -203,7 +203,7 @@
                 android:id="@+id/image1"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@drawable/baseline_menu_book_23"
+                android:src="@drawable/baseline_calendar_today_24"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
                />
@@ -214,7 +214,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="20dp"
                 android:layout_toRightOf="@+id/image1"
-                android:text="Study Session"
+                android:text="View Calender"
                 android:textColor="@color/black"
                 android:textSize="20dp"
                 android:textStyle="bold" />
@@ -308,7 +308,7 @@
                 android:id="@+id/image3"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@drawable/baseline_file_upload_24"
+                android:src="@drawable/baseline_book_online_24"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
                  />
@@ -319,7 +319,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="20dp"
                 android:layout_toRightOf="@+id/image3"
-                android:text="Upload Activity"
+                android:text="Book Apointment"
                 android:textColor="@color/black"
                 android:textSize="20dp"
                 android:textStyle="bold" />

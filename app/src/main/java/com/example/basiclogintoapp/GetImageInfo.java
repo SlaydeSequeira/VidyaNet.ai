@@ -53,11 +53,11 @@ public class GetImageInfo extends AppCompatActivity {
             imageView.setImageBitmap(selectedImage);
 
             // Use a model that's applicable for your use case
-            GenerativeModel gm = new GenerativeModel("gemini-1.5-flash", "AIzaSyDjaMpQtXbZSDR5v_GfucT30lwzJRwZ8dE");
+            GenerativeModel gm = new GenerativeModel("gemini-1.5-flash", "AIzaSyAzIbZIrNYr9b9r3Ey7N5hTfQzg24N4ug4");
             GenerativeModelFutures model = GenerativeModelFutures.from(gm);
 
             Content content = new Content.Builder()
-                    .addText("What is happening in this image?")
+                    .addText("How should I recover from this?")
                     .addImage(selectedImage)
                     .build();
 
