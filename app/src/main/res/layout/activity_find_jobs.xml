@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="top"
         android:layout_marginBottom="20dp"
-        android:padding="40dp"><TextView
+        android:padding="20dp"><TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="bold"
@@ -28,7 +28,7 @@
 
         <Spinner
             android:id="@+id/salary_spinner"
-            android:layout_width="150dp"
+            android:layout_width="130dp"
             android:layout_below="@+id/t"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
@@ -39,14 +39,29 @@
 
         <Spinner
             android:id="@+id/job_spinner"
-            android:layout_width="150dp"
+            android:layout_width="130dp"
             android:layout_below="@+id/t"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/salary_spinner"
             android:entries="@array/jobs"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="10dp"
             android:padding="16dp"
             android:background="@android:drawable/btn_dropdown"/>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:id="@+id/card1"
+            android:backgroundTint="@color/white"
+            android:layout_marginTop="20dp"
+            android:layout_toRightOf="@+id/job_spinner"
+            app:cardCornerRadius="100dp">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/baseline_add_24"
+                />
+        </androidx.cardview.widget.CardView>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="150dp"

@@ -30,6 +30,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.basiclogintoapp.Fragments.BlankFragment;
 import com.example.basiclogintoapp.Fragments.ChatFragment;
 import com.example.basiclogintoapp.Fragments.Home2Fragment;
 import com.example.basiclogintoapp.Fragments.Home3Fragment;
@@ -73,7 +74,7 @@ public class HomePage extends AppCompatActivity {
         setContentView(R.layout.activity_home_page);
         Objects.requireNonNull(getSupportActionBar()).hide();
         if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP){
-            getWindow().setStatusBarColor(Color.parseColor("#F6F6F6"));
+            getWindow().setStatusBarColor(Color.parseColor("#212825"));
         }
         FirebaseMessaging.getInstance().getToken()
                 .addOnCompleteListener(task -> {
@@ -131,7 +132,7 @@ public class HomePage extends AppCompatActivity {
         ViewPager viewPager = findViewById(R.id.viewpager);
 
         MyPagerAdapter pagerAdapter = new MyPagerAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
-        pagerAdapter.addFragment(new Home4Fragment(), "Home");
+        pagerAdapter.addFragment(new BlankFragment(), "Home");
         pagerAdapter.addFragment(new SearchFragment(), "Search");
         pagerAdapter.addFragment(new ProfileFragment(),"Profile");
         viewPager.setAdapter(pagerAdapter);
@@ -210,14 +211,14 @@ public class HomePage extends AppCompatActivity {
         r2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(HomePage.this, PieChart1.class);
+                Intent i = new Intent(HomePage.this, Courses.class);
                 startActivity(i);
             }
         });
         r4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(HomePage.this, ConnectPpl.class);
+                Intent i = new Intent(HomePage.this, Payment.class);
                 startActivity(i);
             }
         });

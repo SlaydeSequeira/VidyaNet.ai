@@ -5,6 +5,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/reward"
     android:padding="16dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 <androidx.cardview.widget.CardView
     android:layout_width="80dp"
     android:layout_height="80dp"
@@ -54,14 +57,6 @@
         android:layout_below="@id/points"
         android:layout_toEndOf="@id/card"/>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#6546d2"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:text="Message"
-        />
-
+    </RelativeLayout>
 </RelativeLayout>
 

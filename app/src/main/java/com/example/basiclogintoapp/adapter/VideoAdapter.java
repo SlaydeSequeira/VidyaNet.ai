@@ -4,6 +4,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.VideoView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -35,6 +37,10 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
         Video video = videoList.get(position);
         holder.titleTextView.setText(video.title);
         holder.descriptionTextView.setText(video.description);
+
+        // Set the video URL to the VideoView
+        holder.videoView.setVideoPath(video.url);
+        holder.videoView.seekTo(1); // Display the first frame
     }
 
     @Override
@@ -45,11 +51,13 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
     public static class VideoViewHolder extends RecyclerView.ViewHolder {
         public TextView titleTextView;
         public TextView descriptionTextView;
+        public VideoView videoView;
 
         public VideoViewHolder(@NonNull View itemView) {
             super(itemView);
             titleTextView = itemView.findViewById(R.id.titleTextView);
             descriptionTextView = itemView.findViewById(R.id.descriptionTextView);
+            videoView = itemView.findViewById(R.id.videoView);
         }
     }
 }

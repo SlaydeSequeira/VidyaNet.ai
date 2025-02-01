@@ -55,7 +55,9 @@ public class MicroStudy extends AppCompatActivity {
         setContentView(R.layout.activity_micro_study);
         WebView webView = findViewById(R.id.webview);
         int cb1 = 0,cb2=0,cb3=0,cb4 = 0;
-        Intent i = getIntent();
+        String a = null, b = null, c = null, d = null, e = null;
+
+
         CheckBox checkbox1 = findViewById(R.id.checkbox1);
         CheckBox checkbox2 = findViewById(R.id.checkbox2);
         CheckBox checkbox3 = findViewById(R.id.checkbox3);
@@ -73,6 +75,13 @@ public class MicroStudy extends AppCompatActivity {
 
         String video="<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/kqtD5dpn9C8?si=ABu-lXaA_39mfnHY\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>";
         Intent intent = getIntent();
+        if (intent != null && intent.hasExtra("a") && intent.hasExtra("b") && intent.hasExtra("c") && intent.hasExtra("d")) {
+            a = intent.getStringExtra("a");
+            b = intent.getStringExtra("b");
+            c = intent.getStringExtra("c");
+            d = intent.getStringExtra("d");
+            e = intent.getStringExtra("e");
+        }
         cardNumber = intent.getIntExtra("cardNumber", -1); // -1 is the default value if "cardNumber" extra is not found
         if (cardNumber != -1) {
             // The cardNumber is successfully retrieved
@@ -98,6 +107,14 @@ public class MicroStudy extends AppCompatActivity {
             t3.setText("How to clear");
             t4.setText("Exam prep");
             video="<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/G5STfWKbF0E?si=UdltKmmmpgqFTpVy\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>";
+        }
+        if(cardNumber==4)
+        {
+            t1.setText(a);
+            t2.setText(b);
+            t3.setText(c);
+            t4.setText(d);
+            video=e;
         }
         webView.loadData(video,"text/html","utf-8");
 

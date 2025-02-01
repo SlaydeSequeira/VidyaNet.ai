@@ -68,7 +68,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/buy_button_1"
-                android:text="Redeem"
+                android:text="Try"
                 android:textColor="@color/white"
 
                 android:layout_marginTop="8dp"
@@ -91,7 +91,13 @@
             android:layout_height="wrap_content"
             android:background="#F3F3F3"
             android:padding="16dp">
-
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:layout_height="60dp"
+                android:src="@drawable/img_5"
+                />
             <TextView
                 android:id="@+id/course_title_2"
                 android:layout_width="wrap_content"
@@ -131,7 +137,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/buy_button_2"
-                android:text="Redeem"
+                android:text="Try"
                 android:textColor="@color/white"
                 android:layout_marginTop="8dp"
                 android:backgroundTint="#6546d2" />
@@ -153,6 +159,13 @@
             android:layout_height="wrap_content"
             android:background="#F3F3F3"
             android:padding="16dp">
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:layout_height="60dp"
+                android:src="@drawable/img_6"
+                />
 
             <TextView
                 android:id="@+id/course_title_3"
@@ -190,7 +203,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/buy_button_3"
-                android:text="Redeem"
+                android:text="Try"
                 android:layout_marginTop="8dp"
                 android:backgroundTint="#6546d2" />
 
@@ -211,6 +224,13 @@
             android:layout_height="wrap_content"
             android:background="#F3F3F3"
             android:padding="16dp">
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:layout_height="60dp"
+                android:src="@drawable/img_7"
+                />
 
             <TextView
                 android:id="@+id/course_title_4"
@@ -248,7 +268,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
                 android:layout_below="@id/buy_button_4"
-                android:text="Redeem"
+                android:text="Try"
                 android:layout_marginTop="8dp"
                 android:backgroundTint="#6546d2" />
 
@@ -271,6 +291,13 @@
             android:background="#F3F3F3"
 
             >
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:layout_height="60dp"
+                android:src="@drawable/img_8"
+                />
             <TextView
                 android:id="@+id/text5"
                 android:layout_width="wrap_content"
@@ -307,7 +334,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/buy_button_5"
-                android:text="Redeem"
+                android:text="Try"
                 android:textColor="@color/white"
                 android:layout_marginTop="8dp"
                 android:backgroundTint="#6546d2" />

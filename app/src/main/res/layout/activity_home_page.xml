@@ -51,7 +51,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".HomePage"
-        android:background="#FFFFFF"
+        android:background="#212529"
         >
         <!-- CardView containing TabLayout -->
         <androidx.cardview.widget.CardView
@@ -77,13 +77,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#F4F3E2"
-                    app:tabSelectedTextColor="#FFEB3B"
+                    app:tabSelectedTextColor="#ffffff"
                     app:tabTextColor="@color/black"
                     app:tabIconTint="@color/black"
                     app:tabMode="fixed"
                     app:tabGravity="fill"
                     app:tabIndicatorHeight="100dp"
-                    app:tabIndicatorColor="#6546d2"
+                    app:tabIndicatorColor="#EA1730"
+
                     app:tabContentStart="@dimen/cardview_compat_inset_shadow"
                     app:tabInlineLabel="true"
                     app:tabRippleColor="@color/black"
@@ -99,6 +100,7 @@
 
                     <com.google.android.material.tabs.TabItem
                         android:id="@+id/search"
+
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Search" />
@@ -125,6 +127,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginBottom="0dp"
+
             app:layout_constraintBottom_toTopOf="@+id/tab"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
