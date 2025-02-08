@@ -67,13 +67,13 @@ public class GetImageInfo extends AppCompatActivity {
             Futures.addCallback(response, new FutureCallback<GenerateContentResponse>() {
                 @Override
                 public void onSuccess(GenerateContentResponse result) {
-                    String resultText = result.getText();
+                    String resultText = result.getText().replaceAll("\\*", ""); // Remove all '*' characters
                     runOnUiThread(() -> {
-                        // Display the result in a TextView (assuming there's a TextView with this ID in your layout)
                         TextView textView = findViewById(R.id.textView);
                         textView.setText(resultText);
                     });
                 }
+
 
                 @Override
                 public void onFailure(Throwable t) {

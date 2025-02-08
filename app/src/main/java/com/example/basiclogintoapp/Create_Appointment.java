@@ -25,7 +25,7 @@ import java.util.Objects;
 public class Create_Appointment extends AppCompatActivity {
 
     private static final String GEMINI_API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent";
-    private static final String API_KEY = "AIzaSyAzIbZIrNYr9b9r3Ey7N5hTfQzg24N4ug4"; // Replace with your actual API key
+    private static final String API_KEY = "AIzaSyA07tAQqohdl3QUkCqPcLqRJ6YTGoG1rA0"; // Replace with your actual API key
     private final OkHttpClient client = new OkHttpClient();
 
     private EditText etName, etAge, etHeight, etWeight, etSymptoms, etMedicalHistory;

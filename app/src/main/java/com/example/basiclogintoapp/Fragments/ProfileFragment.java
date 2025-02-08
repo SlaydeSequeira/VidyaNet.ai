@@ -13,6 +13,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -84,13 +85,15 @@ import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Objects;
 
 public class ProfileFragment extends Fragment {
 
     TextView username;
     ImageView imageView;
-
+    private TextToSpeech textToSpeech;
+    private TextView textView;
     DatabaseReference reference;
     TextView t1;
     FirebaseUser fuser;
@@ -109,7 +112,14 @@ public class ProfileFragment extends Fragment {
     int count1=0;
     String[] Image2= new String[100];
     DatabaseReference dr;
-
+    @Override
+    public void onDestroy() {
+        if (textToSpeech != null) {
+            textToSpeech.stop();
+            textToSpeech.shutdown();
+        }
+        super.onDestroy();
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -125,7 +135,14 @@ public class ProfileFragment extends Fragment {
         r5= view.findViewById(R.id.rel5);
 // Assuming t1 is a TextView
         TextView t1 = view.findViewById(R.id.points);
-
+        textToSpeech = new TextToSpeech(getContext(), new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if (status == TextToSpeech.SUCCESS) {
+                    textToSpeech.setLanguage(Locale.US);  // Set language to English (US)
+                }
+            }
+        });
         fuser = FirebaseAuth.getInstance().getCurrentUser();
         dr = FirebaseDatabase.getInstance().getReference("jobOffer");
         dr.addValueEventListener(new ValueEventListener() {
@@ -183,6 +200,8 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                Intent i = new Intent(getActivity(), AddMedicine.class);
+                String text = "You have clicked add medicine page";
+                textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
                startActivity(i);
             }
         });
@@ -190,6 +209,8 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getActivity(), ViewMedicine.class);
+                String text = "You have clicked view medicine page";
+                textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
                 startActivity(i);
             }
         });
@@ -197,6 +218,8 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getActivity(), GetImageInfo.class);
+                String text = "You have clicked click and learn page";
+                textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
                 startActivity(i);
                 Log.d(TAG, "onClick: " );
             }
@@ -204,6 +227,8 @@ public class ProfileFragment extends Fragment {
         r5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String text = "You have clicked create appointment page";
+                textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
                 Intent i = new Intent(getActivity(), Create_Appointment.class);
                 startActivity(i);
             }
@@ -411,4 +436,5 @@ public class ProfileFragment extends Fragment {
             notificationManager.notify(0, notification);
         }
     }
+
 }

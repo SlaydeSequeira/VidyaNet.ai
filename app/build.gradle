@@ -1,7 +1,9 @@
+
 plugins {
     id 'com.android.application'
     id 'com.google.gms.google-services'
     id 'org.jetbrains.kotlin.android'
+
 }
 
 android {
@@ -104,6 +106,14 @@ dependencies {
  //   implementation 'com.prolificinteractive:material-calendarview:2.0.0'
   //  implementation 'com.github.prolificinteractive:material-calendarview:2.0'
  //   implementation ("com.github.prolificinteractive:material-calendarview:2.0.0")  // Replace with the latest version
+    implementation 'com.google.ar:core:1.16.0'
 
+    implementation 'com.google.ar.sceneform.ux:sceneform-ux:1.15.0'
+    implementation 'com.google.ar.sceneform:core:1.15.0'
+    implementation "com.google.ar.sceneform:animation:1.15.0"
+
+    implementation 'com.google.android.material:material:1.2.0-alpha05'
+
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0"
 
 }

@@ -4,13 +4,13 @@
     <!-- AndroidManifest.xml -->
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
     <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
     <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
-
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="32"
@@ -40,6 +40,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BasicLoginToApp"
         tools:targetApi="31">
+        <activity
+            android:name=".Augmented"
+            android:exported="false" />
+        <activity
+            android:name=".ReportOutbreak2"
+            android:exported="false" />
+        <activity
+            android:name=".ReportOutbreak"
+            android:exported="false" />
+        <activity
+            android:name=".Hospital"
+            android:exported="false" />
         <activity
             android:name=".Upload"
             android:exported="false" />
